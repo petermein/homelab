@@ -5,7 +5,7 @@ gitea:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-      - host: &host git.khuedoan.com
+      - host: &host git.jupiter.mein.nl
         paths:
           - path: /
             pathType: Prefix

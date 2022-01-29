@@ -4,10 +4,10 @@ elementweb:
     className: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      external-dns.alpha.kubernetes.io/target: "homelab-tunnel.khuedoan.com"
+      external-dns.alpha.kubernetes.io/target: "homelab-tunnel.jupiter.mein.nl"
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     hosts:
-      - host: &host chat.khuedoan.com
+      - host: &host chat.jupiter.mein.nl
         paths:
           - path: /
             pathType: Prefix
@@ -17,5 +17,5 @@ elementweb:
           - *host
   config:
     default:
-      base_url: https://matrix.khuedoan.com
-      server_name: khuedoan.com
+      base_url: https://matrix.jupiter.mein.nl
+      server_name: jupiter.mein.nl

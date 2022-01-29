@@ -39,7 +39,7 @@ spec:
         - name: CONTEXT
           value: ./tools
         - name: IMAGE
-          value: registry.khuedoan.com/tools:latest
+          value: registry.jupiter.mein.nl/tools:latest
         - name: EXTRA_ARGS
           value:
             - --cache=true
