@@ -4,12 +4,12 @@ metadata:
   name: blog
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    external-dns.alpha.kubernetes.io/target: homelab-tunnel.khuedoan.com
+    external-dns.alpha.kubernetes.io/target: homelab-tunnel.jupiter.mein.nl
     external-dns.alpha.kubernetes.io/cloudflare-proxied: 'true'
 spec:
   ingressClassName: nginx
   rules:
-    - host: &host blog.khuedoan.com
+    - host: &host blog.jupiter.mein.nl
       http:
         paths:
           - pathType: ImplementationSpecific
