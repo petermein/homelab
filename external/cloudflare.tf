@@ -1,5 +1,5 @@
-data "cloudflare_zone" "khuedoan_com" {
-  name = "khuedoan.com"
+data "cloudflare_zone" "mein_nl" {
+  zone_id = "f2dbeb2dca3e055df71df866b8188ce7"
 }
 
 data "cloudflare_api_token_permission_groups" "all" {}
