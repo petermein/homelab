@@ -3,6 +3,7 @@ gitea:
     enabled: true
     className: nginx
     annotations:
+      external-dns.alpha.kubernetes.io/exclude: true
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
       - host: &host git.jupiter.mein.nl
@@ -20,7 +21,7 @@ gitea:
     config:
       server:
         LANDING_PAGE: explore
-        ROOT_URL: https://git.khuedoan.com
+        ROOT_URL: https://git.jupiter.mein.nl
   persistence:
     storageClass: longhorn
   postgresql:
