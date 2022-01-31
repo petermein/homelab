@@ -25,6 +25,27 @@ spec:
           workspace: shared-data
       taskRef:
         name: lint
+<<<<<<< HEAD
+=======
+    - name: tools
+      runAfter:
+        - fetch-repo
+      workspaces:
+        - name: source
+          workspace: shared-data
+        # - name: dockerconfig
+        #   workspace: dockerconfig
+      taskRef:
+        name: kaniko
+      params:
+        - name: CONTEXT
+          value: ./tools
+        - name: IMAGE
+          value: registry.jupiter.mein.nl/tools:latest
+        - name: EXTRA_ARGS
+          value:
+            - --cache=true
+>>>>>>> e811f24237ce3e35dfec3f36a89fcf9861ca7958
     - name: external
       runAfter:
         - fetch-repo
