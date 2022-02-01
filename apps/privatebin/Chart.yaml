@@ -1,0 +1,7 @@
+apiVersion: v2
+name: privatebin
+version: 0.0.0
+dependencies:
+  - name: privatebin
+    version: 0.10.1
+    repository: https://privatebin.github.io/helm-chart
