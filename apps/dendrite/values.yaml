@@ -48,7 +48,7 @@ dendrite:
     className: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      external-dns.alpha.kubernetes.io/target: "homelab-tunnel.jupiter.mein.nl"
+      external-dns.alpha.kubernetes.io/target: "jupiter-tunnel.jupiter.mein.nl"
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: 32m
     hosts:

@@ -4,7 +4,7 @@ elementweb:
     className: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      external-dns.alpha.kubernetes.io/target: "homelab-tunnel.jupiter.mein.nl"
+      external-dns.alpha.kubernetes.io/target: "jupiter-tunnel.jupiter.mein.nl"
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     hosts:
       - host: &host chat.jupiter.mein.nl
