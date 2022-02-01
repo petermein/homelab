@@ -7,7 +7,7 @@ privatebin:
     hosts:
       - host: &host privatebin.jupiter.mein.nl
         paths:
-          -gti ad /
+          - /
     tls:
       - secretName: privatebin-tls-certificate
         hosts:
