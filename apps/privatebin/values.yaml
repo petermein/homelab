@@ -1,14 +1,11 @@
 privatebin:
   ingress:
     enabled: true
-    ingressClassName: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
       - host: &host privatebin.jupiter.mein.nl
-        paths:
-          - path: /
-            pathType: Prefix
+        path: "/"
     tls:
       - secretName: privatebin-tls-certificate
         hosts:
