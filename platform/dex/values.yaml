@@ -1,453 +1,454 @@
-# Default values for dex.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# -- Number of replicas (pods) to launch.
-replicaCount: 1
-
-image:
-  # -- Name of the image repository to pull the container image from.
-  repository: ghcr.io/dexidp/dex
-
-  # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
-  pullPolicy: IfNotPresent
-
-  # -- Image tag override for the default value (chart appVersion).
-  tag: ""
-
-# -- Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries).
-imagePullSecrets: []
-
-# -- A name in place of the chart name for `app:` labels.
-nameOverride: ""
-
-# -- A name to substitute for the full names of resources.
-fullnameOverride: ""
-
-# -- A list of hosts and IPs that will be injected into the pod's hosts file if specified.
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#hostname-and-name-resolution)
-hostAliases: []
-
-https:
-  # -- Enable the HTTPS endpoint.
-  enabled: false
-
-grpc:
-  # -- Enable the gRPC endpoint.
-  # Read more in the [documentation](https://dexidp.io/docs/api/).
-  enabled: false
-
-configSecret:
-  # -- Enable creating a secret from the values passed to `config`.
-  # If set to false, name must point to an existing secret.
-  create: false
-
-  # -- The name of the secret to mount as configuration in the pod.
-  # If not set and create is true, a name is generated using the fullname template.
-  # Must point to secret that contains at least a `config.yaml` key.
-  name: "config"
-
-# -- Application configuration.
-# See the [official documentation](https://dexidp.io/docs/).
-config:
-  # The base path of Dex and the external name of the OpenID Connect service.
-  # This is the canonical URL that all clients MUST use to refer to Dex. If a
-  # path is provided, Dex's HTTP service will listen at a non-root URL.
-  issuer: https://dex.jupiter.mein.nl
-
-  # The storage configuration determines where Dex stores its state.
-  # Supported options include:
-  #   - SQL flavors
-  #   - key-value stores (eg. etcd)
-  #   - Kubernetes Custom Resources
-  #
-  # See the documentation (https://dexidp.io/docs/storage/) for further information.
-  storage:
-    type: memory
-
-    # type: sqlite3
-    # config:
-    #   file: /var/dex/dex.db
-
-    # type: mysql
-    # config:
-    #   host: 127.0.0.1
-    #   port: 3306
-    #   database: dex
-    #   user: mysql
-    #   password: mysql
-    #   ssl:
-    #     mode: "false"
-
-    # type: postgres
-    # config:
-    #   host: 127.0.0.1
-    #   port: 5432
-    #   database: dex
-    #   user: postgres
-    #   password: postgres
-    #   ssl:
-    #     mode: disable
-
-    # type: etcd
-    # config:
-    #   endpoints:
-    #     - http://127.0.0.1:2379
-    #   namespace: dex/
-
-    # type: kubernetes
-    # config:
-    #   kubeConfigFile: $HOME/.kube/config
-
-  # HTTP service configuration
-  web:
-    http: 127.0.0.1:5556
-
-    # Uncomment to enable HTTPS endpoint.
-    # https: 127.0.0.1:5554
-    # tlsCert: /etc/dex/tls.crt
-    # tlsKey: /etc/dex/tls.key
-
-  # Dex UI configuration
-  # frontend:
-  #   issuer: dex
-  #   logoURL: theme/logo.png
-  #   dir: ""
-  #   theme: light
-
-  # Telemetry configuration
-  # telemetry:
-  #   http: 127.0.0.1:5558
-
-  # logger:
-  #   level: "debug"
-  #   format: "text" # can also be "json"
-
-  # gRPC API configuration
-  # Uncomment this block to enable the gRPC API.
-  # See the documentation (https://dexidp.io/docs/api/) for further information.
-  # grpc:
-  #   addr: 127.0.0.1:5557
-  #   tlsCert: examples/grpc-client/server.crt
-  #   tlsKey: examples/grpc-client/server.key
-  #   tlsClientCA: examples/grpc-client/ca.crt
-
-  # Expiration configuration for tokens, signing keys, etc.
-  # expiry:
-  #   deviceRequests: "5m"
-  #   signingKeys: "6h"
-  #   idTokens: "24h"
-
-  # OAuth2 configuration
-  # oauth2:
-  #   # use ["code", "token", "id_token"] to enable implicit flow for web-only clients
-  #   responseTypes: [ "code" ] # also allowed are "token" and "id_token"
-  #
-  #   # By default, Dex will ask for approval to share data with application
-  #   # (approval for sharing data from connected IdP to Dex is separate process on IdP)
-  #   skipApprovalScreen: false
-  #
-  #   # If only one authentication method is enabled, the default behavior is to
-  #   # go directly to it. For connected IdPs, this redirects the browser away
-  #   # from application to upstream provider such as the Google login page
-  #   alwaysShowLoginScreen: false
-  #
-  #   # Uncomment to use a specific connector for password grants
-  #   passwordConnector: local
-
-  # Static clients registered in Dex by default.
-  #
-  # Alternatively, clients may be added through the gRPC API.
-  # staticClients:
-  #   - id: example-app
-  #     redirectURIs:
-  #       - 'http://127.0.0.1:5555/callback'
-  #     name: 'Example App'
-  #     secret: ZXhhbXBsZS1hcHAtc2VjcmV0
-
-  # Connectors are used to authenticate users agains upstream identity providers.
-  #
-  # See the documentation (https://dexidp.io/docs/connectors/) for further information.
-  # connectors: []
-
-  # Enable the password database.
-  #
-  # It's a "virtual" connector (identity provider) that stores
-  # login credentials in Dex's store.
-  enablePasswordDB: true
-
-  # If this option isn't chosen users may be added through the gRPC API.
-  # A static list of passwords for the password connector.
-  #
-  # Alternatively, passwords my be added/updated through the gRPC API.
-  # staticPasswords: []
-
-  connectors:
-  - type: oidc
-    id: authentik
-    name: Jupiter
-    config:
-      # Canonical URL of the provider, also used for configuration discovery.
-      # This value MUST match the value returned in the provider config discovery.
-      #
-      # See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
-      issuer: https://authentik.jupiter.mein.nl
-
-      # Connector config values starting with a "$" will read from the environment.
-      clientID: d27f287e32bb0126c2a18871d0fa1705c31b0bee
-      clientSecret: 1c2fd1b956809eb285530483869baf4a470076ce4915dfa05e731a8f9f49bbae8471b6fe219abdf863d3adfb7c804096124918c6300c22d048b199556813f94d
-
-      # Dex's issuer URL + "/callback"
-      redirectURI: http://dex.jupiter.mein.nl/callback
-
-
-      # Some providers require passing client_secret via POST parameters instead
-      # of basic auth, despite the OAuth2 RFC discouraging it. Many of these
-      # cases are caught internally, but some may need to uncomment the
-      # following field.
-      #
-      # basicAuthUnsupported: true
-      
-      # Google supports whitelisting allowed domains when using G Suite
-      # (Google Apps). The following field can be set to a list of domains
-      # that can log in:
-      #
-      # hostedDomains:
-      #  - example.com
-
-      # List of additional scopes to request in token response
-      # Default is profile and email
-      # Full list at https://dexidp.io/docs/custom-scopes-claims-clients/
-      # scopes:
-      #  - profile
-      #  - email
-      #  - groups
-
-      # Some providers return claims without "email_verified", when they had no usage of emails verification in enrollment process
-      # or if they are acting as a proxy for another IDP etc AWS Cognito with an upstream SAML IDP
-      # This can be overridden with the below option
-      # insecureSkipEmailVerified: true 
-
-      # Groups claims (like the rest of oidc claims through dex) only refresh when the id token is refreshed
-      # meaning the regular refresh flow doesn't update the groups claim. As such by default the oidc connector
-      # doesn't allow groups claims. If you are okay with having potentially stale group claims you can use
-      # this option to enable groups claims through the oidc connector on a per-connector basis.
-      # This can be overridden with the below option
-      # insecureEnableGroups: true
-
-      # When enabled, the OpenID Connector will query the UserInfo endpoint for additional claims. UserInfo claims
-      # take priority over claims returned by the IDToken. This option should be used when the IDToken doesn't contain
-      # all the claims requested.
-      # https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
-      # getUserInfo: true
-
-      # The set claim is used as user id.
-      # Claims list at https://openid.net/specs/openid-connect-core-1_0.html#Claims
-      # Default: sub
-      # userIDKey: nickname
-
-      # The set claim is used as user name.
-      # Default: name
-      # userNameKey: nickname
-
-      # For offline_access, the prompt parameter is set by default to "prompt=consent". 
-      # However this is not supported by all OIDC providers, some of them support different
-      # value for prompt, like "prompt=login" or "prompt=none"
-      # promptType: consent
-
-      # Some providers return non-standard claims (eg. mail).
-      # Use claimMapping to map those claims to standard claims:
-      # https://openid.net/specs/openid-connect-core-1_0.html#Claims
-      # claimMapping can only map a non-standard claim to a standard one if it's not returned in the id_token.
-      claimMapping:
-        # The set claim is used as preferred username.
-        # Default: preferred_username
-        # preferred_username: other_user_name
-
-        # The set claim is used as email.
-        # Default: email
-        # email: mail
-
-        # The set claim is used as groups.
-        # Default: groups
-        # groups: "cognito:groups"
-
-# -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
-volumes: []
-
-# -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
-volumeMounts: []
-
-# -- Additional environment variables mounted from [secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or [config maps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-envFrom: []
-
-# -- Additional environment variables passed directly to containers.
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-env: {}
-
-# -- Similar to env but with support for all possible configurations.
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-envVars: []
-# - name: SOME_ENV_VAR
-#   value: value
-# - name: SOME_ENV_VAR2
-#   valueFrom:
-#     secretKeyRef:
-#       name: secret-name
-#       key: secret-key
-# - name: SOME_ENV_VAR3
-#   valueFrom:
-#     configMapKeyRef:
-#       name: config-map-name
-#       key: config-map-key
-
-serviceAccount:
-  # -- Enable service account creation.
-  create: true
-
-  # -- Annotations to be added to the service account.
-  annotations: {}
-
-  # -- The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template.
-  name: ""
-
-rbac:
-  # -- Specifies whether RBAC resources should be created.
-  # If disabled, the operator is responsible for creating the necessary resources based on the templates.
-  create: true
-
-# -- Annotations to be added to pods.
-podAnnotations: {}
-
-podDisruptionBudget:
-  # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
-  # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
-  enabled: false
-
-  # -- (int/percentage) Number or percentage of pods that must remain available.
-  minAvailable:
-
-  # -- (int/percentage) Number or percentage of pods that can be unavailable.
-  maxUnavailable:
-
-# -- Specify a priority class name to set [pod priority](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority).
-priorityClassName: ""
-
-# -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details.
-podSecurityContext: {}
-  # fsGroup: 2000
-
-# -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details.
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-service:
-  # -- Annotations to be added to the service.
-  annotations: {}
-
-  # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
-  type: ClusterIP
-
-  # -- Internal cluster service IP (when applicable)
-  clusterIP: ""
-
-  ports:
-    http:
-      # -- HTTP service port
-      port: 5556
-
-      # -- (int) HTTP node port (when applicable)
-      nodePort:
-
-    https:
-      # -- HTTPS service port
-      port: 5554
-
-      # -- (int) HTTPS node port (when applicable)
-      nodePort:
-
-    grpc:
-      # -- gRPC service port
-      port: 5557
-
-      # -- (int) gRPC node port (when applicable)
-      nodePort:
-
-ingress:
-  # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
-  enabled: false
-
-  # -- Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
-  className: "nginx"
-
-  # -- Annotations to be added to the ingress.
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-
-  # -- Ingress host configuration.
-  # @default -- See [values.yaml](values.yaml).
-  hosts:
-    - host: &host dex.jupiter.mein.nl
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-
-  # -- Ingress TLS configuration.
-  # @default -- See [values.yaml](values.yaml).
-  tls:
-   - secretName: dex-tls-certificate
-     hosts:
-       - *host
-
-# -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details.
-# @default -- No requests or limits.
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-# -- Autoscaling configuration (see [values.yaml](values.yaml) for details).
-# @default -- Disabled by default.
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-# -- [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration.
-nodeSelector: {}
-
-# -- [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints.
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
-tolerations: []
-
-# -- [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration.
-# See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
-affinity: {}
-
-# -- Deployment [strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) configuration.
-strategy: {}
-  # rollingUpdate:
-  #   maxUnavailable: 1
-  # type: RollingUpdate
+dex:
+  # Default values for dex.
+  # This is a YAML-formatted file.
+  # Declare variables to be passed into your templates.
+
+  # -- Number of replicas (pods) to launch.
+  replicaCount: 1
+
+  image:
+    # -- Name of the image repository to pull the container image from.
+    repository: ghcr.io/dexidp/dex
+
+    # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
+    pullPolicy: IfNotPresent
+
+    # -- Image tag override for the default value (chart appVersion).
+    tag: ""
+
+  # -- Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries).
+  imagePullSecrets: []
+
+  # -- A name in place of the chart name for `app:` labels.
+  nameOverride: ""
+
+  # -- A name to substitute for the full names of resources.
+  fullnameOverride: ""
+
+  # -- A list of hosts and IPs that will be injected into the pod's hosts file if specified.
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#hostname-and-name-resolution)
+  hostAliases: []
+
+  https:
+    # -- Enable the HTTPS endpoint.
+    enabled: false
+
+  grpc:
+    # -- Enable the gRPC endpoint.
+    # Read more in the [documentation](https://dexidp.io/docs/api/).
+    enabled: false
+
+  configSecret:
+    # -- Enable creating a secret from the values passed to `config`.
+    # If set to false, name must point to an existing secret.
+    create: false
+
+    # -- The name of the secret to mount as configuration in the pod.
+    # If not set and create is true, a name is generated using the fullname template.
+    # Must point to secret that contains at least a `config.yaml` key.
+    name: "config"
+
+  # -- Application configuration.
+  # See the [official documentation](https://dexidp.io/docs/).
+  config:
+    # The base path of Dex and the external name of the OpenID Connect service.
+    # This is the canonical URL that all clients MUST use to refer to Dex. If a
+    # path is provided, Dex's HTTP service will listen at a non-root URL.
+    issuer: https://dex.jupiter.mein.nl
+
+    # The storage configuration determines where Dex stores its state.
+    # Supported options include:
+    #   - SQL flavors
+    #   - key-value stores (eg. etcd)
+    #   - Kubernetes Custom Resources
+    #
+    # See the documentation (https://dexidp.io/docs/storage/) for further information.
+    storage:
+      type: memory
+
+      # type: sqlite3
+      # config:
+      #   file: /var/dex/dex.db
+
+      # type: mysql
+      # config:
+      #   host: 127.0.0.1
+      #   port: 3306
+      #   database: dex
+      #   user: mysql
+      #   password: mysql
+      #   ssl:
+      #     mode: "false"
+
+      # type: postgres
+      # config:
+      #   host: 127.0.0.1
+      #   port: 5432
+      #   database: dex
+      #   user: postgres
+      #   password: postgres
+      #   ssl:
+      #     mode: disable
+
+      # type: etcd
+      # config:
+      #   endpoints:
+      #     - http://127.0.0.1:2379
+      #   namespace: dex/
+
+      # type: kubernetes
+      # config:
+      #   kubeConfigFile: $HOME/.kube/config
+
+    # HTTP service configuration
+    web:
+      http: 127.0.0.1:5556
+
+      # Uncomment to enable HTTPS endpoint.
+      # https: 127.0.0.1:5554
+      # tlsCert: /etc/dex/tls.crt
+      # tlsKey: /etc/dex/tls.key
+
+    # Dex UI configuration
+    # frontend:
+    #   issuer: dex
+    #   logoURL: theme/logo.png
+    #   dir: ""
+    #   theme: light
+
+    # Telemetry configuration
+    # telemetry:
+    #   http: 127.0.0.1:5558
+
+    # logger:
+    #   level: "debug"
+    #   format: "text" # can also be "json"
+
+    # gRPC API configuration
+    # Uncomment this block to enable the gRPC API.
+    # See the documentation (https://dexidp.io/docs/api/) for further information.
+    # grpc:
+    #   addr: 127.0.0.1:5557
+    #   tlsCert: examples/grpc-client/server.crt
+    #   tlsKey: examples/grpc-client/server.key
+    #   tlsClientCA: examples/grpc-client/ca.crt
+
+    # Expiration configuration for tokens, signing keys, etc.
+    # expiry:
+    #   deviceRequests: "5m"
+    #   signingKeys: "6h"
+    #   idTokens: "24h"
+
+    # OAuth2 configuration
+    # oauth2:
+    #   # use ["code", "token", "id_token"] to enable implicit flow for web-only clients
+    #   responseTypes: [ "code" ] # also allowed are "token" and "id_token"
+    #
+    #   # By default, Dex will ask for approval to share data with application
+    #   # (approval for sharing data from connected IdP to Dex is separate process on IdP)
+    #   skipApprovalScreen: false
+    #
+    #   # If only one authentication method is enabled, the default behavior is to
+    #   # go directly to it. For connected IdPs, this redirects the browser away
+    #   # from application to upstream provider such as the Google login page
+    #   alwaysShowLoginScreen: false
+    #
+    #   # Uncomment to use a specific connector for password grants
+    #   passwordConnector: local
+
+    # Static clients registered in Dex by default.
+    #
+    # Alternatively, clients may be added through the gRPC API.
+    # staticClients:
+    #   - id: example-app
+    #     redirectURIs:
+    #       - 'http://127.0.0.1:5555/callback'
+    #     name: 'Example App'
+    #     secret: ZXhhbXBsZS1hcHAtc2VjcmV0
+
+    # Connectors are used to authenticate users agains upstream identity providers.
+    #
+    # See the documentation (https://dexidp.io/docs/connectors/) for further information.
+    # connectors: []
+
+    # Enable the password database.
+    #
+    # It's a "virtual" connector (identity provider) that stores
+    # login credentials in Dex's store.
+    enablePasswordDB: true
+
+    # If this option isn't chosen users may be added through the gRPC API.
+    # A static list of passwords for the password connector.
+    #
+    # Alternatively, passwords my be added/updated through the gRPC API.
+    # staticPasswords: []
+
+    connectors:
+    - type: oidc
+      id: authentik
+      name: Jupiter
+      config:
+        # Canonical URL of the provider, also used for configuration discovery.
+        # This value MUST match the value returned in the provider config discovery.
+        #
+        # See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
+        issuer: https://authentik.jupiter.mein.nl
+
+        # Connector config values starting with a "$" will read from the environment.
+        clientID: d27f287e32bb0126c2a18871d0fa1705c31b0bee
+        clientSecret: 1c2fd1b956809eb285530483869baf4a470076ce4915dfa05e731a8f9f49bbae8471b6fe219abdf863d3adfb7c804096124918c6300c22d048b199556813f94d
+
+        # Dex's issuer URL + "/callback"
+        redirectURI: http://dex.jupiter.mein.nl/callback
+
+
+        # Some providers require passing client_secret via POST parameters instead
+        # of basic auth, despite the OAuth2 RFC discouraging it. Many of these
+        # cases are caught internally, but some may need to uncomment the
+        # following field.
+        #
+        # basicAuthUnsupported: true
+        
+        # Google supports whitelisting allowed domains when using G Suite
+        # (Google Apps). The following field can be set to a list of domains
+        # that can log in:
+        #
+        # hostedDomains:
+        #  - example.com
+
+        # List of additional scopes to request in token response
+        # Default is profile and email
+        # Full list at https://dexidp.io/docs/custom-scopes-claims-clients/
+        # scopes:
+        #  - profile
+        #  - email
+        #  - groups
+
+        # Some providers return claims without "email_verified", when they had no usage of emails verification in enrollment process
+        # or if they are acting as a proxy for another IDP etc AWS Cognito with an upstream SAML IDP
+        # This can be overridden with the below option
+        # insecureSkipEmailVerified: true 
+
+        # Groups claims (like the rest of oidc claims through dex) only refresh when the id token is refreshed
+        # meaning the regular refresh flow doesn't update the groups claim. As such by default the oidc connector
+        # doesn't allow groups claims. If you are okay with having potentially stale group claims you can use
+        # this option to enable groups claims through the oidc connector on a per-connector basis.
+        # This can be overridden with the below option
+        # insecureEnableGroups: true
+
+        # When enabled, the OpenID Connector will query the UserInfo endpoint for additional claims. UserInfo claims
+        # take priority over claims returned by the IDToken. This option should be used when the IDToken doesn't contain
+        # all the claims requested.
+        # https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
+        # getUserInfo: true
+
+        # The set claim is used as user id.
+        # Claims list at https://openid.net/specs/openid-connect-core-1_0.html#Claims
+        # Default: sub
+        # userIDKey: nickname
+
+        # The set claim is used as user name.
+        # Default: name
+        # userNameKey: nickname
+
+        # For offline_access, the prompt parameter is set by default to "prompt=consent". 
+        # However this is not supported by all OIDC providers, some of them support different
+        # value for prompt, like "prompt=login" or "prompt=none"
+        # promptType: consent
+
+        # Some providers return non-standard claims (eg. mail).
+        # Use claimMapping to map those claims to standard claims:
+        # https://openid.net/specs/openid-connect-core-1_0.html#Claims
+        # claimMapping can only map a non-standard claim to a standard one if it's not returned in the id_token.
+        claimMapping:
+          # The set claim is used as preferred username.
+          # Default: preferred_username
+          # preferred_username: other_user_name
+
+          # The set claim is used as email.
+          # Default: email
+          # email: mail
+
+          # The set claim is used as groups.
+          # Default: groups
+          # groups: "cognito:groups"
+
+  # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
+  volumes: []
+
+  # -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/).
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
+  volumeMounts: []
+
+  # -- Additional environment variables mounted from [secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or [config maps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables).
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
+  envFrom: []
+
+  # -- Additional environment variables passed directly to containers.
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
+  env: {}
+
+  # -- Similar to env but with support for all possible configurations.
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
+  envVars: []
+  # - name: SOME_ENV_VAR
+  #   value: value
+  # - name: SOME_ENV_VAR2
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: secret-name
+  #       key: secret-key
+  # - name: SOME_ENV_VAR3
+  #   valueFrom:
+  #     configMapKeyRef:
+  #       name: config-map-name
+  #       key: config-map-key
+
+  serviceAccount:
+    # -- Enable service account creation.
+    create: true
+
+    # -- Annotations to be added to the service account.
+    annotations: {}
+
+    # -- The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template.
+    name: ""
+
+  rbac:
+    # -- Specifies whether RBAC resources should be created.
+    # If disabled, the operator is responsible for creating the necessary resources based on the templates.
+    create: true
+
+  # -- Annotations to be added to pods.
+  podAnnotations: {}
+
+  podDisruptionBudget:
+    # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
+    # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
+    enabled: false
+
+    # -- (int/percentage) Number or percentage of pods that must remain available.
+    minAvailable:
+
+    # -- (int/percentage) Number or percentage of pods that can be unavailable.
+    maxUnavailable:
+
+  # -- Specify a priority class name to set [pod priority](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority).
+  priorityClassName: ""
+
+  # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details.
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  # -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details.
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  service:
+    # -- Annotations to be added to the service.
+    annotations: {}
+
+    # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
+    type: ClusterIP
+
+    # -- Internal cluster service IP (when applicable)
+    clusterIP: ""
+
+    ports:
+      http:
+        # -- HTTP service port
+        port: 5556
+
+        # -- (int) HTTP node port (when applicable)
+        nodePort:
+
+      https:
+        # -- HTTPS service port
+        port: 5554
+
+        # -- (int) HTTPS node port (when applicable)
+        nodePort:
+
+      grpc:
+        # -- gRPC service port
+        port: 5557
+
+        # -- (int) gRPC node port (when applicable)
+        nodePort:
+
+  ingress:
+    # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+    enabled: false
+
+    # -- Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
+    className: "nginx"
+
+    # -- Annotations to be added to the ingress.
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+
+    # -- Ingress host configuration.
+    # @default -- See [values.yaml](values.yaml).
+    hosts:
+      - host: &host dex.jupiter.mein.nl
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+
+    # -- Ingress TLS configuration.
+    # @default -- See [values.yaml](values.yaml).
+    tls:
+    - secretName: dex-tls-certificate
+      hosts:
+        - *host
+
+  # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details.
+  # @default -- No requests or limits.
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  # -- Autoscaling configuration (see [values.yaml](values.yaml) for details).
+  # @default -- Disabled by default.
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  # -- [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration.
+  nodeSelector: {}
+
+  # -- [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints.
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
+  tolerations: []
+
+  # -- [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration.
+  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
+  affinity: {}
+
+  # -- Deployment [strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) configuration.
+  strategy: {}
+    # rollingUpdate:
+    #   maxUnavailable: 1
+    # type: RollingUpdate
