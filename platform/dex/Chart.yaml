@@ -1,8 +1,7 @@
 apiVersion: v2
 name: dex
-version: 0.6.5
+version: 1.2.0
 dependencies:
-  - name: dex
-    version: 0.6.5
-    repository: https://charts.dexidp.io
-
+  - name: adfinis
+    version: security-apps-0.39.1
+    repository: https://charts.adfinis.com

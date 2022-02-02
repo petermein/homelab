@@ -1,233 +1,77 @@
+dexK8sAuthenticator:
+  enabled: true
+  project: infra-dex-k8s-authenticator
+  values:
+    global:
+      deployEnv: prod
+    dexK8sAuthenticator:
+      debug: false
+      web_path_prefix: /
+      #logoUrl: http://<path-to-your-logo.png>
+      #tlsCert: /path/to/dex-client.crt
+      #tlsKey: /path/to/dex-client.key
+      clusters:
+      - name: jupiter-cluster
+        short_description: "Jupiter Cluster"
+        description: "Jupiter Mein Cluster"
+        client_secret: "client_Secret"
+        issuer: https://dex.jupiter.mein.nl
+        k8s_master_uri: https://k8s.jupiter.mein.nl
+        client_id: my-cluster
+        redirect_uri: https://login.jupiter.mein.nl/callback/my-cluster
+        k8s_ca_uri: https://url-to-your-ca.crt
+    ingress:
+      enabled: true
+      annotations: {}
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.class: nginx
+      hosts: &host login.jupiter.mein.nl
+      # ingress.tls -- Ingress TLS options
+      tls:
+        - secretName: customer-center-tls
+          hosts:
+            - *host
 dex:
-  # Default values for dex.
-  # This is a YAML-formatted file.
-  # Declare variables to be passed into your templates.
-
-  # -- Number of replicas (pods) to launch.
-  replicaCount: 1
-
-  image:
-    # -- Name of the image repository to pull the container image from.
-    repository: ghcr.io/dexidp/dex
-
-    # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
-    pullPolicy: IfNotPresent
-
-    # -- Image tag override for the default value (chart appVersion).
-    tag: ""
-
-  # -- Reference to one or more secrets to be used when [pulling images](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) (from private registries).
-  imagePullSecrets: []
-
-  # -- A name in place of the chart name for `app:` labels.
-  nameOverride: ""
-
-  # -- A name to substitute for the full names of resources.
-  fullnameOverride: ""
-
-  # -- A list of hosts and IPs that will be injected into the pod's hosts file if specified.
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#hostname-and-name-resolution)
-  hostAliases: []
-
-  https:
-    # -- Enable the HTTPS endpoint.
-    enabled: false
-
-  grpc:
-    # -- Enable the gRPC endpoint.
-    # Read more in the [documentation](https://dexidp.io/docs/api/).
-    enabled: false
-
-  configSecret:
-    # -- Enable creating a secret from the values passed to `config`.
-    # If set to false, name must point to an existing secret.
-    create: false
-
-    # -- The name of the secret to mount as configuration in the pod.
-    # If not set and create is true, a name is generated using the fullname template.
-    # Must point to secret that contains at least a `config.yaml` key.
-    name: "config"
-
-  # -- Application configuration.
-  # See the [official documentation](https://dexidp.io/docs/).
-  config: {}
-
-  # -- Additional storage [volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
-  volumes: []
-
-  # -- Additional [volume mounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/).
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) for details.
-  volumeMounts: []
-
-  # -- Additional environment variables mounted from [secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or [config maps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables).
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-  envFrom: []
-
-  # -- Additional environment variables passed directly to containers.
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-  env: {}
-
-  # -- Similar to env but with support for all possible configurations.
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-  envVars: []
-  # - name: SOME_ENV_VAR
-  #   value: value
-  # - name: SOME_ENV_VAR2
-  #   valueFrom:
-  #     secretKeyRef:
-  #       name: secret-name
-  #       key: secret-key
-  # - name: SOME_ENV_VAR3
-  #   valueFrom:
-  #     configMapKeyRef:
-  #       name: config-map-name
-  #       key: config-map-key
-
-  serviceAccount:
-    # -- Enable service account creation.
-    create: true
-
-    # -- Annotations to be added to the service account.
-    annotations: {}
-
-    # -- The name of the service account to use.
-    # If not set and create is true, a name is generated using the fullname template.
-    name: ""
-
-  rbac:
-    # -- Specifies whether RBAC resources should be created.
-    # If disabled, the operator is responsible for creating the necessary resources based on the templates.
-    create: true
-
-  # -- Annotations to be added to pods.
-  podAnnotations: {}
-
-  podDisruptionBudget:
-    # -- Enable a [pod distruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to help dealing with [disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
-    # It is **highly recommended** for webhooks as disruptions can prevent launching new pods.
-    enabled: false
-
-    # -- (int/percentage) Number or percentage of pods that must remain available.
-    minAvailable:
-
-    # -- (int/percentage) Number or percentage of pods that can be unavailable.
-    maxUnavailable:
-
-  # -- Specify a priority class name to set [pod priority](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority).
-  priorityClassName: ""
-
-  # -- Pod [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context) for details.
-  podSecurityContext: {}
-    # fsGroup: 2000
-
-  # -- Container [security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container).
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) for details.
-  securityContext: {}
-    # capabilities:
-    #   drop:
-    #   - ALL
-    # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
-    # runAsUser: 1000
-
-  service:
-    # -- Annotations to be added to the service.
-    annotations: {}
-
-    # -- Kubernetes [service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types).
-    type: ClusterIP
-
-    # -- Internal cluster service IP (when applicable)
-    clusterIP: ""
-
-    ports:
-      http:
-        # -- HTTP service port
-        port: 5556
-
-        # -- (int) HTTP node port (when applicable)
-        nodePort:
-
-      https:
-        # -- HTTPS service port
-        port: 5554
-
-        # -- (int) HTTPS node port (when applicable)
-        nodePort:
-
-      grpc:
-        # -- gRPC service port
-        port: 5557
-
-        # -- (int) gRPC node port (when applicable)
-        nodePort:
-
-  ingress:
-    # -- Enable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
-    enabled: true
-
-    # -- Ingress [class name](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class).
-    className: "nginx"
-
-    # -- Annotations to be added to the ingress.
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      # kubernetes.io/tls-acme: "true"
-
-    # -- Ingress host configuration.
-    # @default -- See [values.yaml](values.yaml).
-    hosts:
-      - host: &host dex.jupiter.mein.nl
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-
-    # -- Ingress TLS configuration.
-    # @default -- See [values.yaml](values.yaml).
-    tls:
-    - secretName: dex-tls-certificate
+  enabled: true
+  project: infra-dex
+  values:
+    ingress:
+      enabled: true
       hosts:
-        - *host
+        - &dex dex.jupiter.mein.nl
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.class: nginx
+      tls:
+        - secretName: customer-center-tls
+          hosts:
+            - *dex
+    grpc: false
+    config:
+      connectors:
+        - type: oidc
+          id: authentik
+          name: Jupiter
+          config:
+            # Canonical URL of the provider, also used for configuration discovery.
+            # This value MUST match the value returned in the provider config discovery.
+            #
+            # See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
+            issuer: https://authentik.jupiter.mein.nl/application/o/dex/
 
-  # -- Container resource [requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources) for details.
-  # @default -- No requests or limits.
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+            # Connector config values starting with a "$" will read from the environment.
+            clientID: d27f287e32bb0126c2a18871d0fa1705c31b0bee
+            clientSecret: 1c2fd1b956809eb285530483869baf4a470076ce4915dfa05e731a8f9f49bbae8471b6fe219abdf863d3adfb7c804096124918c6300c22d048b199556813f94d
 
-  # -- Autoscaling configuration (see [values.yaml](values.yaml) for details).
-  # @default -- Disabled by default.
-  autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
-
-  # -- [Node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) configuration.
-  nodeSelector: {}
-
-  # -- [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for node taints.
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
-  tolerations: []
-
-  # -- [Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) configuration.
-  # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling) for details.
-  affinity: {}
-
-  # -- Deployment [strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) configuration.
-  strategy: {}
-    # rollingUpdate:
-    #   maxUnavailable: 1
-    # type: RollingUpdate
+            # Dex's issuer URL + "/callback"
+            redirectURI: http://dex.jupiter.mein.nl/callback
+      issuer: 'https://dex.jupiter.mein.nl'
+      staticClients:
+        - id: "oidc-auth-client"
+          redirectURIs:
+          - 'https://login.jupiter.mein.nl/callback'
+          name: 'oidc-auth-client'
+          secret: 'Secret'
+      enablePasswordDB: false
+      oauth2:
+        alwaysShowLoginScreen: false
