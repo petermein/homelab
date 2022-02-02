@@ -192,7 +192,7 @@ dex:
         # This value MUST match the value returned in the provider config discovery.
         #
         # See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
-        issuer: https://authentik.jupiter.mein.nl
+        issuer: https://authentik.jupiter.mein.nl/application/o/dex/
 
         # Connector config values starting with a "$" will read from the environment.
         clientID: d27f287e32bb0126c2a18871d0fa1705c31b0bee
