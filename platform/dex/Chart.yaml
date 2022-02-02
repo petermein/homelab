@@ -2,7 +2,7 @@ apiVersion: v2
 name: dex
 version: 0.6.5
 dependencies:
-  - name: gitea
+  - name: dex
     version: 0.6.5
     repository: https://charts.dexidp.io
 
