@@ -30,12 +30,12 @@ homeassistant:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
-          - host: &host paperless.jupiter.mein.nl
+          - host: &host homeassistant.europa.jupiter.mein.nl
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: paperless-tls-certificate
+          - secretName: homeassistant-tls-certificate
             hosts:
               - *host
 
@@ -75,13 +75,13 @@ homeassistant:
     primary:
       persistence:
         enabled: false
-        # storageClass: ""
+        storageClass: ""
 
   # -- Enable and configure postgresql database subchart under this key.
   #    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
   # @default -- See values.yaml
   postgresql:
-    enabled: false
+    enabled: true
     image:
       repository: bitnami/postgresql
       tag: 14.1.0
@@ -89,27 +89,29 @@ homeassistant:
     postgresqlPassword: home-assistant-pass
     postgresqlDatabase: home-assistant
     persistence:
-      enabled: false
-      # storageClass: ""
+      enabled: true
+      storageClass: longhorn
+      size: 4Gi
 
   # -- Enable and configure influxdb database subchart under this key.
   #    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb)
   # @default -- See values.yaml
   influxdb:
-    enabled: false
+    enabled: true
     architecture: standalone
     database: home_assistant
     authEnabled: false
     persistence:
-      enabled: false
-      # storageClass: ""
-      # size: 8Gi
+      enabled: true
+      storageClass: longhorn
+      size: 8Gi
 
-  metrics:
+  metrics: &metrics
     # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
     # @default -- See values.yaml
-    enabled: false
+    enabled: true
     serviceMonitor:
+      enabled: true
       interval: 1m
       scrapeTimeout: 30s
       labels: {}
