@@ -132,9 +132,9 @@ pihole:
       - path: /
         pathType: Prefix
     tls:
-    - secretName: hajimari-tls-certificate
+    - secretName: pihole-tls-certificate
       hosts:
-      - *host
+        - *host
 
   # -- Probes configuration
   probes:
