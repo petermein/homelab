@@ -127,14 +127,14 @@ pihole:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-    - host: &host pihole.europa.jupiter.mein.nl
-      paths:
-      - path: /
-        pathType: Prefix
+      - host: &host pihole.europa.jupiter.mein.nl
+        paths:
+        - path: /
+          pathType: Prefix
     tls:
-    - secretName: pihole-tls-certificate
-      hosts:
-        - *host
+      - secretName: pihole-tls-certificate
+        hosts:
+          - *host
 
   # -- Probes configuration
   probes:
@@ -215,7 +215,7 @@ pihole:
   # -- Use an existing secret for the admin password.
   admin:
     # -- Specify an existing secret to use as admin password
-    existingSecret: "pihole-admin"
+    existingSecret: "pihole-password"
     # -- Specify the key inside the secret to use
     passwordKey: "password"
 
