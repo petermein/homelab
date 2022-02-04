@@ -131,7 +131,8 @@ ingress:
     - path: /
       pathType: Prefix
   tls:
-  - hosts:
+  - secretName: hajimari-tls-certificate
+    hosts:
     - *host
 
 # -- Probes configuration
