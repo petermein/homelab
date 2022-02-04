@@ -129,8 +129,8 @@ pihole:
     hosts:
       - host: &host pihole.europa.jupiter.mein.nl
         paths:
-        - path: /
-          pathType: Prefix
+          - path: /
+            pathType: Prefix
     tls:
       - secretName: pihole-tls-certificate
         hosts:
