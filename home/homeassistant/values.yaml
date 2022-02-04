@@ -164,7 +164,7 @@ home-assistant:
         annotations:
           kubernetes.io/ingress.class: "nginx"
         hosts:
-        - host: &config omeassistant-config.europa.jupiter.mein.nl
+        - host: &config homeassistant-config.europa.jupiter.mein.nl
           paths:
           - path: /
             pathType: Prefix
