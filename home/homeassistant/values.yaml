@@ -161,8 +161,9 @@ home-assistant:
       - "/config/.vscode"
       ingress:
         enabled: true
+        ingressClassName: nginx
         annotations:
-          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
         - host: &config homeassistant-config.europa.jupiter.mein.nl
           paths:
