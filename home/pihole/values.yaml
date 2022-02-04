@@ -68,7 +68,7 @@ pihole:
     enabled: true
 
     # -- `spec.type` for the DHCP Service
-    type: NodePort
+    type: LoadBalancer
 
     # -- `spec.externalTrafficPolicy` for the DHCP Service
     externalTrafficPolicy: Local
