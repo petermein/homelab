@@ -127,10 +127,8 @@ pihole:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-      - host: &host pihole.europa.jupiter.mein.nl
-        paths:
-          - path: /
-            pathType: Prefix
+      - &host pihole.europa.jupiter.mein.nl
+    path: /
     tls:
       - secretName: pihole-tls-certificate
         hosts:
