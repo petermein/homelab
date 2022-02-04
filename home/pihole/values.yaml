@@ -119,7 +119,7 @@ pihole:
       # metallb.universe.tf/allow-shared-ip: pihole-svc
 
   virtualHost: pi.hole
-g
+
   # -- Configuration for the Ingress
   ingress:
     enabled: true
