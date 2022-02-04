@@ -13,4 +13,5 @@ helm template \
 kubectl --namespace argocd wait --timeout=300s --for condition=ResourcesUpToDate \
 	applicationset/system \
 	applicationset/platform \
-	applicationset/apps
+	applicationset/apps \ 
+	applicationset/home 
