@@ -40,7 +40,7 @@ pihole:
     mixedService: false
 
     # -- `spec.type` for the DNS Service
-    type: LoadBalancer
+    type: NodePort
 
     # -- The port of the DNS service
     port: 53
@@ -52,7 +52,7 @@ pihole:
     externalTrafficPolicy: Local
 
     # -- A fixed `spec.loadBalancerIP` for the DNS Service
-    loadBalancerIP: "192.168.1.225"
+    loadBalancerIP: ""
     # -- A fixed `spec.loadBalancerIP` for the IPv6 DNS Service
     loadBalancerIPv6: ""
 
@@ -68,13 +68,13 @@ pihole:
     enabled: true
 
     # -- `spec.type` for the DHCP Service
-    type: LoadBalancer
+    type: NodePort
 
     # -- `spec.externalTrafficPolicy` for the DHCP Service
     externalTrafficPolicy: Local
 
     # -- A fixed `spec.loadBalancerIP` for the DHCP Service
-    loadBalancerIP: "192.168.1.225"
+    loadBalancerIP: ""
     # -- A fixed `spec.loadBalancerIP` for the IPv6 DHCP Service
     loadBalancerIPv6: ""
 
