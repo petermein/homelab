@@ -16,4 +16,4 @@ vault:
           hosts:
             - *host
     dev:
-      enabled: false 
+      enabled: true 
