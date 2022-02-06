@@ -28,6 +28,7 @@ home-assistant:
         enabled: true
         ingressClassName: nginx
         annotations:
+          nginx.org/websocket-services: home-assistant
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
           - host: &host homeassistant.europa.jupiter.mein.nl
