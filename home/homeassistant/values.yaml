@@ -170,8 +170,9 @@ home-assistant:
           - path: /
             pathType: Prefix
         tls:
-        - hosts:
-          - *config
+          - secretName: home-assistant-config-tls-certificate
+            hosts:
+            - *config
       volumeMounts:
       - name: config
         mountPath: /config
