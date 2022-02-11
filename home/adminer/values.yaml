@@ -42,14 +42,14 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
-  - host: &host adminer.jupiter.mein.nl
+  - host: &config homeassistant-config.europa.jupiter.mein.nl
     paths:
     - path: /
       pathType: Prefix
   tls:
-    - secretName: adminer-tls-certificate
+    - secretName: home-assistant-config-tls-certificate
       hosts:
-      - *host
+      - *config
 
 # kubectl create secret generic ca --from-file=ca.pem
 # cat > login-ssl.php << EOF
