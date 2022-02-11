@@ -1,0 +1,10 @@
+  influxdb:
+    image:
+      tag: 2.1.1-debian-10-r48
+    architecture: standalone
+    auth:
+      existingSecret: influxdb-secret
+    persistence:
+      enabled: true
+      storageClass: longhorn
+      size: 8Gi
