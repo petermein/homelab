@@ -37,11 +37,19 @@ service:
 ## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ##
 ingress:
-  enabled: false
-  annotations: {}
-  tls: []
-  hosts: []
-  path: /
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+  - host: &host adminer.jupiter.mein.nl
+    paths:
+    - path: /
+      pathType: Prefix
+  tls:
+    - secretName: adminer-tls-certificate
+      hosts:
+      - *host
 
 # kubectl create secret generic ca --from-file=ca.pem
 # cat > login-ssl.php << EOF
