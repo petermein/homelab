@@ -6,6 +6,13 @@ version: 0.2.0
 description: Adminer is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. Adminer is available for MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Firebird, SimpleDB, Elasticsearch and MongoDB
 home: https://www.adminer.org
 icon: https://raw.githubusercontent.com/Kong/docker-official-docs/master/adminer/logo.png
+dependencies:
+  - name: common
+    repository: https://charts.bitnami.com/bitnami
+    tags:
+      - bitnami-common
+    version: 1.x.x
+engine: gotpl
 keywords:
   - adminer
   - postgres
@@ -24,7 +31,3 @@ maintainers:
   - name: alexnuttinck
     email: alexandre.nuttinck@cetic.be
     url: https://github.com/alexnuttinck
-dependencies:
-  - name: common
-    version: 1.11.1
-    repository: https://charts.bitnami.com/bitnami
