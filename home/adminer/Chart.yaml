@@ -4,4 +4,3 @@ version: 0.0.0
 dependencies:
   - name: adminer
     version: 0.2.0
-    repository: 'file://./helm-adminer'
