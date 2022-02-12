@@ -4,3 +4,9 @@ version: 0.0.0
 dependencies:
   - name: adminer
     version: 0.2.0
+  - name: common
+    repository: https://charts.bitnami.com/bitnami
+    tags:
+      - bitnami-common
+    version: 1.x.x
+engine: gotpl
