@@ -22,8 +22,6 @@ keywords:
   - mongodb
   - database
   - sql
-source:
-  - https://github.com/cetic/helm-adminer
 maintainers:
   - name: fzalila
     email: faiez.zalila@cetic.be
