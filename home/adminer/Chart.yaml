@@ -4,4 +4,4 @@ version: 0.0.0
 dependencies:
   - name: adminer
     version: 0.1.7
-    repository: https://cetic.github.io/helm-charts
+    repository: 'file://../helm-adminer'
