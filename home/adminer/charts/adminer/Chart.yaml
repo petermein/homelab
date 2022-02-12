@@ -24,3 +24,7 @@ maintainers:
   - name: alexnuttinck
     email: alexandre.nuttinck@cetic.be
     url: https://github.com/alexnuttinck
+dependencies:
+  - name: common
+    version: 1.11.1
+    repository: https://charts.bitnami.com/bitnami
