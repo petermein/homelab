@@ -37,20 +37,23 @@ adminer:
 
   ## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ##
-  ingress:
-    enabled: true
-    ingressClassName: nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    hosts:
-    - host: &host adminer.europa.jupiter.mein.nl
-      paths:
-      - path: /
-        pathType: Prefix
-    tls:
-      - secretName: adminer-tls-certificate
-        hosts:
-        - *host
+## Configure the ingress resource that allows you to access the
+## &reg;abbitMQ installation. Set up the URL
+## ref: https://kubernetes.io/docs/user-guide/ingress/
+##
+ingress:
+  enabled: true
+  path: /
+  pathType: ImplementationSpecific
+  hostname: adminer.jupiter.mein.nl
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  tls: true
+  selfSigned: false
+  extraHosts: []
+  extraTls: []
+  secrets: []
+  ingressClassName: "nginx"
 
   # kubectl create secret generic ca --from-file=ca.pem
   # cat > login-ssl.php << EOF

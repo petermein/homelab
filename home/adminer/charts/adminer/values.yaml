@@ -91,7 +91,7 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress resource
   ##
-  hostname: influxdb.local
+  hostname: adminer.local
   ## @param ingress.path Ingress path*' in order to use this
   ## with ALB ingress controllers.
   ##
