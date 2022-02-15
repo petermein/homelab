@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sample-laravel-app
+  name: sample-laravel-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-laravel-app
+  template:
+    metadata:
+      labels:
+        app: sample-laravel-app
+    spec:
+      containers:
+        - name: sample-laravel-app
+          image: docker pull hashicorp/http-echo:latest
+          imagePullPolicy: Always
