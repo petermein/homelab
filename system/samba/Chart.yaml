@@ -3,5 +3,5 @@ name: samba
 version: 0.0.0
 dependencies:
   - name: samba
-    version: 4.15.5
+    version: 6.0.0
     repository: https://k8s-at-home.com/charts/
