@@ -51,6 +51,8 @@ samba:
           paths:
             - path: /
               pathType: Prefix
+              port:
+                number: 445
       tls:
         - secretName: samba-tls-certificate
           hosts:
