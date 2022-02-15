@@ -1,0 +1,98 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/crazy-max/samba
+  # -- image tag
+  tag: 4.15.5
+  # -- image pull policy
+  pullPolicy: Always
+
+# -- environment variables. See [image docs](https://github.com/crazy-max/docker-samba#environment-variables) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: Europe/Amsterdam
+  # SAMBA_WORKGROUP: NT-Domain-Name or Workgroup-Name. (default WORKGROUP)
+  # SAMBA_SERVER_STRING: Server string is the equivalent of the NT Description field. (default Docker Samba Server)
+  # SAMBA_LOG_LEVEL: Log level. (default 0)
+  # SAMBA_FOLLOW_SYMLINKS: Allow to follow symlinks. (default yes)
+  # SAMBA_WIDE_LINKS: Controls whether or not links in the UNIX file system may be followed by the server. (default yes)
+  # SAMBA_HOSTS_ALLOW: Set of hosts which are permitted to access a service. (default 127.0.0.0/8 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16)
+  # SAMBA_INTERFACES: Allows you to override the default network interfaces list.
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      tcp:
+        enabled: true
+        protocol: TCP
+        port: 445
+      netbios:
+        enabled: true
+        protocol: TCP
+        port: 139
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    main:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host samba.jupiter.mein.nl
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: samba-tls-certificate
+          hosts:
+            - *host
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  hostpath:
+    enabled: true
+    type: hostPath
+    hostPath: /pool0/home/renee
+
+configmap:
+  config:
+    # -- Store samba configuration as a ConfigMap
+    enabled: true
+    # -- Samba configuration. See [image documentation](https://github.com/crazy-max/docker-samba#configuration) for more information.
+    # @default -- See values.yaml
+    data:
+      config.yml: |
+        auth:
+          - user: renee
+            group: renee
+            uid: 1004
+            gid: 1004
+            password: mette01
+
+
+        global:
+          - "force user = renee"
+          - "force group = renee"
+
+        share:
+          - name: renee
+            path: /pool0/home/renee
+            browsable: yes
+            readonly: no
+            guestok: no
+            validusers: renee
+            writelist: renee
+            veto: no
