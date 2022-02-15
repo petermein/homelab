@@ -13,9 +13,6 @@ ingress:
   ingressClassName: nginx
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  hosts:
-    - &host longhorn.jupiter.mein.nl
-  tls:
-    - secretName: longhorn-general-tls
-      hosts:
-        - *host
+  host: longhorn.jupiter.mein.nl
+  tls: true
+  tlsSecret: longhorn-tls-certificate
