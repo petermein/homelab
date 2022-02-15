@@ -16,5 +16,5 @@ spec:
     spec:
       containers:
         - name: sample-laravel-app
-          image: hashicorp/http-echo:latest
+          image: ealen/echo-server:latest
           imagePullPolicy: Always
