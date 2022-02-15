@@ -31,32 +31,31 @@ samba:
   # @default -- See values.yaml
   service:
     main:
-      # type: ClusterIP
+      type: LoadBalancer
       ports:
         tcp:
           enabled: true
           protocol: TCP
           port: 445
 
-  ingress:
-    # -- Enable and configure ingress settings for the chart under this key.
-    # @default -- See values.yaml
-    main:
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-        - host: &host samba.jupiter.mein.nl
-          paths:
-            - path: /
-              pathType: Prefix
-              port:
-                number: 445
-      tls:
-        - secretName: samba-tls-certificate
-          hosts:
-            - *host
+
+  # ingress:
+  #   # -- Enable and configure ingress settings for the chart under this key.
+  #   # @default -- See values.yaml
+  #   main:
+  #     enabled: true
+  #     ingressClassName: nginx
+  #     annotations:
+  #       cert-manager.io/cluster-issuer: letsencrypt-prod
+  #     hosts:
+  #       - host: &host samba.jupiter.mein.nl
+  #         paths:
+  #           - path: /
+  #             pathType: Prefix
+  #     tls:
+  #       - secretName: samba-tls-certificate
+  #         hosts:
+  #           - *host
 
   # -- Configure persistence settings for the chart under this key.
   # @default -- See values.yaml
