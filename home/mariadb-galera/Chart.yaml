@@ -3,5 +3,5 @@ name: mariadb-galera
 version: 0.0.0
 dependencies:
   - name: mariadb-galera
-    version: 11.0.3
+    version: 7.0.1
     repository: https://charts.bitnami.com/bitnami
