@@ -1,7 +1,7 @@
 apiVersion: v2
-name: paperless
+name: samba
 version: 0.0.0
 dependencies:
-  - name: paperless
-    version: 8.3.0
+  - name: samba
+    version: 4.15.5
     repository: https://k8s-at-home.com/charts/
