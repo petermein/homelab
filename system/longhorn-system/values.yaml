@@ -8,11 +8,11 @@ longhorn:
     guaranteedReplicaManagerCPU: 15
     replicaSoftAntiAffinity: true
 
-ingress:
-  enabled: true
-  ingressClassName: nginx
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  host: longhorn.jupiter.mein.nl
-  tls: true
-  tlsSecret: longhorn-tls-certificate
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    host: longhorn.jupiter.mein.nl
+    tls: true
+    tlsSecret: longhorn-tls-certificate
