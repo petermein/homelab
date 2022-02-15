@@ -10,7 +10,7 @@
 
 Current status: **ALPHA**
 
-This project utilizes [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) to automate provisioning, operating, and updating self-hosted services in my homelab.
+This project utilizes [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) and [GitOps](https://www.weave.works/technologies/gitops) to automate provisioning, operating, and updating self-hosted services in my homelab.
 It can be used as a highly customizable framework to build your own homelab.
 
 <!-- TODO -->
@@ -52,8 +52,8 @@ Project status: **Alpha** (see [roadmap](#roadmap) below)
 - [x] CI/CD platform
 - [x] Private container registry
 - [x] Distributed storage
+- [x] Support multiple environments (dev, stag, prod)
 - [ ] Monitoring and alerting 🚧
-- [ ] Support multiple environments (dev, stag, prod) 🚧
 - [ ] Automated offsite backups 🚧
 - [ ] Single sign-on 🚧
 
