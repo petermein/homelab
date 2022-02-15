@@ -20,7 +20,7 @@ samba:
     # -- Set the container timezone
     TZ: Europe/Amsterdam
     # SAMBA_WORKGROUP: NT-Domain-Name or Workgroup-Name. (default WORKGROUP)
-    # SAMBA_SERVER_STRING: Server string is the equivalent of the NT Description field. (default Docker Samba Server)
+    SAMBA_SERVER_STRING: europa
     # SAMBA_LOG_LEVEL: Log level. (default 0)
     # SAMBA_FOLLOW_SYMLINKS: Allow to follow symlinks. (default yes)
     # SAMBA_WIDE_LINKS: Controls whether or not links in the UNIX file system may be followed by the server. (default yes)
@@ -31,16 +31,12 @@ samba:
   # @default -- See values.yaml
   service:
     main:
-      type: LoadBalancer
+      # type: ClusterIP
       ports:
         tcp:
           enabled: true
           protocol: TCP
           port: 445
-        netbios:
-          enabled: true
-          protocol: TCP
-          port: 139
 
   ingress:
     # -- Enable and configure ingress settings for the chart under this key.
