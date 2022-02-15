@@ -31,6 +31,7 @@ samba:
   # @default -- See values.yaml
   service:
     main:
+      type: LoadBalancer
       ports:
         tcp:
           enabled: true
