@@ -121,7 +121,7 @@ auth:
   replicationPassword: ""
   ## @param auth.existingSecret Use existing secret for password details (`auth.rootPassword`, `auth.password`, `auth.replicationPassword` will be ignored and picked up from this secret). The secret has to contain the keys `mariadb-root-password`, `mariadb-replication-password` and `mariadb-password`
   ##
-  existingSecret: ""
+  existingSecret: "mariadb-secret"
   ## @param auth.forcePassword Force users to specify required passwords
   ##
   forcePassword: false
