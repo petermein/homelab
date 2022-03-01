@@ -86,8 +86,8 @@ nextcloud:
       subPath:
     mail:
       enabled: true
-      fromAddress: jupiter
-      domain: mein.nl
+      fromAddress: nextcloud
+      domain: jupiter.mein.nl
       smtp:
         host: smtp.sendgrid.net
         secure: tls
