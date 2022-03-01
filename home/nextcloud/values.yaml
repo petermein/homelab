@@ -89,9 +89,9 @@ nextcloud:
       fromAddress: jupiter
       domain: mein.nl
       smtp:
-        host: mein.nl
-        secure: ssl
-        port: 465
+        host: smtp.sendgrid.net
+        secure: tls
+        port: 587
         authtype: LOGIN
     # PHP Configuration files
     # Will be injected in /usr/local/etc/php/conf.d for apache image and in /usr/local/etc/php-fpm.d when nginx.enabled: true
