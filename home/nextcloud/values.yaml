@@ -16,7 +16,7 @@ nextcloud:
   deploymentAnnotations: {}
 
   # Number of replicas to be deployed
-  replicaCount: 0
+  replicaCount: 1
 
   ## Allowing use of ingress controllers
   ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
