@@ -25,6 +25,7 @@ nextcloud:
     enabled: true
     className: nginx
     annotations:
+      external-dns.alpha.kubernetes.io/exclude: 'true'
       nginx.ingress.kubernetes.io/proxy-body-size: 4G
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/server-snippet: |-
