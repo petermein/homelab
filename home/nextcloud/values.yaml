@@ -293,7 +293,7 @@ nextcloud:
   ## ref: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/background_jobs_configuration.html#webcron
   ##
   cronjob:
-    enabled: false
+    enabled: true
     # Nexcloud image is used as default but only curl is needed
     image: {}
       # repository: nextcloud
@@ -304,10 +304,10 @@ nextcloud:
     # Every 5 minutes
     # Note: Setting this to any any other value than 5 minutes might
     #  cause issues with how nextcloud background jobs are executed
-    schedule: "* 0 * * *"
+    schedule: "*/5 * * * *"
     annotations: {}
     # Set curl's insecure option if you use e.g. self-signed certificates
-    curlInsecure: false
+    curlInsecure: true
     failedJobsHistoryLimit: 5
     successfulJobsHistoryLimit: 2
     # If not set, nextcloud deployment one will be set
