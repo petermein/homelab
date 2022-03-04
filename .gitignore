@@ -10,3 +10,4 @@ book/
 *kubeconfig.yaml
 Chart.lock
 .DS_Store
+go.sum
