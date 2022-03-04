@@ -17,10 +17,9 @@ cluster:
 		--inventory inventories/${env}.yml \
 		cluster.yml
 
-shutdown:
-	ansible-playbook \
-		--inventory inventories/${env}.yml \
-		shutdown.yml
+console:
+	ansible-console \
+		--inventory inventories/${env}.yml
 
 vagrant:
 	vagrant up
