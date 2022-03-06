@@ -3,6 +3,11 @@ renovate:
     # schedule: '0 9 1 * *'  # At 09:00 every month
     schedule: '*/5 * * * *'  # TODO remove after testing
     suspend: false
+    concurrencyPolicy: 'Forbid'
+    failedJobsHistoryLimit: 5
+    successfulJobsHistoryLimit: 5
+    jobRestartPolicy: Never
+    jobBackoffLimit: 5
   renovate:
     config: |
       {
@@ -12,6 +17,6 @@ renovate:
         "token": "7e81319c795c27d16483211cedd81f27058b02c2",
         "autodiscover": false,
         "repositories": [
-          "ops/homelab"
+          "petermein/homelab"
         ]
       }
