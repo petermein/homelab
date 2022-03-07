@@ -57,7 +57,7 @@ home-assistant:
       enabled: true
       type: pvc
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 5Gi
       storageClass: longhorn
 
     # -- Configure a hostPathMount to mount a USB device in the container.
