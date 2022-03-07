@@ -19,14 +19,15 @@ authentik:
         hosts:
           - *host
 
+#TODO move to shared postgres
   postgresql:
-    enabled: true
+    enabled: false
     postgresqlPassword: *postgresql_password
     persistence:
       enabled: true
       storageClass: longhorn
   redis:
-    enabled: true
+    enabled: false
     master:
       persistence:
         enabled: true
