@@ -6,7 +6,7 @@ spec:
   backend:
     s3:
       endpoint: s3.us-west-002.backblazeb2.com
-      bucket: khuedoan-homelab-backup
+      bucket: infratron-homelab
       accessKeyIDSecretRef:
         name: backblaze-credentials
         key: application-key-id
@@ -17,7 +17,7 @@ spec:
       name: backblaze-credentials
       key: repo-password
   backup:
-    schedule: '0 8 * * *'
+    schedule: '*/5 * * * *'
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
     # TODO
