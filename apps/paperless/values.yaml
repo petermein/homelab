@@ -44,7 +44,7 @@ paperless:
     consume:
       enabled: true
       mountPath: /usr/src/paperless/consume
-      accessMode: ReadWriteOnce
+      accessMode: ReadWriteMany
       storageClass: "longhorn"
       size: 1Gi
 
