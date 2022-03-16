@@ -1,4 +1,58 @@
 paperless:
+
+  env:
+    # -- Project name
+    COMPOSE_PROJECT_NAME: paperless
+    # -- Redis to use
+    PAPERLESS_REDIS: redis.redis
+    # -- OCR languages to install
+    PAPERLESS_OCR_LANGUAGE: nld
+    # USERMAP_UID: 1000
+    # USERMAP_GID: 1000
+    # PAPERLESS_TIME_ZONE: Europe/London
+    # -- Database host to use
+    PAPERLESS_DBHOST: postgresql.postgresql
+    # -- Port to use
+    PAPERLESS_PORT: 8000
+
+    envFrom: 
+    - secretRef:
+        name: paperless-secret
+
+  persistence:
+    # -- Configure persistence for data.
+    # @default -- See values.yaml
+    data:
+      enabled: true
+      mountPath: /usr/src/paperless/data
+      accessMode: ReadWriteOnce
+      storageClass: "longhorn"
+
+    # -- Configure persistence for media.
+    # @default -- See values.yaml
+    media:
+      enabled: true
+      mountPath: /usr/src/paperless/media
+      accessMode: ReadWriteOnce
+      storageClass: "longhorn"
+
+    # -- Configure volume to monitor for new documents.
+    # @default -- See values.yaml
+    consume:
+      enabled: true
+      mountPath: /usr/src/paperless/consume
+      accessMode: ReadWriteOnce
+      storageClass: "longhorn"
+
+    # -- Configure export volume.
+    # @default -- See values.yaml
+
+    export:
+      enabled: true
+      mountPath: /usr/src/paperless/export
+      accessMode: ReadWriteOnce
+      storageClass: "longhorn"
+
   ingress:
     main:
       enabled: true
@@ -15,5 +69,3 @@ paperless:
         - secretName: paperless-tls-certificate
           hosts:
             - *host
-  postgresql:
-    enabled: true
