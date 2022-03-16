@@ -6,7 +6,8 @@ paperless:
     # -- Redis to use
     PAPERLESS_REDIS: redis://redis.redis:6379
     # -- OCR languages to install
-    PAPERLESS_OCR_LANGUAGE: nld
+    PAPERLESS_OCR_LANGUAGE: eng
+    PAPERLESS_TIME_ZONE: "Europe/Amsterdam"
     # USERMAP_UID: 1000
     # USERMAP_GID: 1000
     # PAPERLESS_TIME_ZONE: Europe/London
