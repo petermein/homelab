@@ -117,7 +117,7 @@ auth:
   ## @param auth.existingSecret The name of an existing secret with Redis&trade; credentials
   ## NOTE: When it's set, the previous `auth.password` parameter is ignored
   ##
-  existingSecret: "redis-secret"
+  existingSecret: ""
   ## @param auth.existingSecretPasswordKey Password key to be retrieved from existing secret
   ## NOTE: ignored unless `auth.existingSecret` parameter is set
   ##
