@@ -1,19 +1,13 @@
 terraform {
-  required_version = "~> 1.1.0"
-
-  backend "local" {
-
-  }
-
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.9.0"
+      version = "~> 3.8.0"
     }
 
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.8.0"
+      version = "~> 2.7.0"
     }
 
     http = {

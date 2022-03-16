@@ -9,9 +9,8 @@ RUN pacman --sync --refresh --noconfirm \
         --latest 20 \
         --sort rate
 
-RUN yes | pacman --sync --refresh \
+RUN pacman --sync --refresh --noconfirm \
         ansible \
-        argocd \
         diffutils \
         docker \
         docker-compose \
@@ -23,12 +22,15 @@ RUN yes | pacman --sync --refresh \
         libisoburn \
         make \
         mdbook \
+        neovim \
         openssh \
         p7zip \
         python \
+        python-jinja \
         python-kubernetes \
         python-netaddr \
         python-pip \
+        python-rich \
         sudo \
         terraform
 

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-data "cloudflare_zone" "mein_nl" {
-  zone_id = "f2dbeb2dca3e055df71df866b8188ce7"
-=======
 data "cloudflare_zone" "zone" {
-  name = "khuedoan.com"
->>>>>>> be9817458ca90384f21059c81ae3168cbac6237e
+  zone_id = "f2dbeb2dca3e055df71df866b8188ce7"
 }
 
 data "cloudflare_api_token_permission_groups" "all" {}
