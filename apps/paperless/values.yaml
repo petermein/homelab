@@ -17,8 +17,8 @@ paperless:
     PAPERLESS_PORT: 8000
 
     envFrom: 
-    - secretRef:
-        name: paperless-secret
+      - secretRef:
+          name: paperless-secret
 
   persistence:
     # -- Configure persistence for data.
