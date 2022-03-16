@@ -69,3 +69,6 @@ paperless:
         - secretName: paperless-tls-certificate
           hosts:
             - *host
+
+  postgresql:
+    enabled: false
