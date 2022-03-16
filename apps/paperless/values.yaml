@@ -27,6 +27,7 @@ paperless:
       mountPath: /usr/src/paperless/data
       accessMode: ReadWriteOnce
       storageClass: "longhorn"
+      size: 1Gi
 
     # -- Configure persistence for media.
     # @default -- See values.yaml
@@ -35,6 +36,7 @@ paperless:
       mountPath: /usr/src/paperless/media
       accessMode: ReadWriteOnce
       storageClass: "longhorn"
+      size: 1Gi
 
     # -- Configure volume to monitor for new documents.
     # @default -- See values.yaml
@@ -43,6 +45,7 @@ paperless:
       mountPath: /usr/src/paperless/consume
       accessMode: ReadWriteOnce
       storageClass: "longhorn"
+      size: 1Gi
 
     # -- Configure export volume.
     # @default -- See values.yaml
@@ -52,6 +55,7 @@ paperless:
       mountPath: /usr/src/paperless/export
       accessMode: ReadWriteOnce
       storageClass: "longhorn"
+      size: 1Gi
 
   ingress:
     main:
