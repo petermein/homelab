@@ -5,6 +5,6 @@ dependencies:
   - name: paperless
     version: 8.4.0
     repository: https://k8s-at-home.com/charts/
-  - name: sftp
-    version: 5.1.5
-    repository: https://emberstack.github.io/helm-charts
+  - name: crushftp
+    version: 1.0.2
+    repository: https://greggbjensen.github.io/helm-crushftp
