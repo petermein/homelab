@@ -1,4 +1,4 @@
-FROM alpine:20210804
+FROM alpine:20220316
 
 RUN apk add dhcp
 
