@@ -63,7 +63,7 @@ firefly-iii:
     image:
       repository: curlimages/curl
       pullPolicy: IfNotPresent
-      tag: 7.81.0
+      tag: 7.82.0
 
     imagePullSecrets: []
 
