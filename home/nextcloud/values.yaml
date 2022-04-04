@@ -5,7 +5,7 @@ nextcloud:
   ##
   image:
     repository: nextcloud
-    tag: 23.0.2-fpm-alpine
+    tag: 23.0.3-fpm-alpine
     pullPolicy: IfNotPresent
     # pullSecrets:
     #   - myRegistrKeySecretName
@@ -443,7 +443,7 @@ nextcloud:
 
     image:
       repository: xperimental/nextcloud-exporter
-      tag: 0.5.0
+      tag: 0.5.1
       pullPolicy: IfNotPresent
 
     ## Metrics exporter resource requests and limits
