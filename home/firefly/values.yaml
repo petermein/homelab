@@ -26,7 +26,6 @@ firefly-iii:
 
     # -- Directly defined environment variables. Use this for non-secret configuration values.
     env:
-      DB_CONNECTION: mysql
       DEFAULT_LANGUAGE: "nl_NL"
       DEFAULT_LOCALE: "equal"
       TZ: "Europe/Amsterdam"
