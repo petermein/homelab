@@ -66,7 +66,7 @@ datadog:
 
     # datadog.clusterName -- Set a unique cluster name to allow scoping hosts and Cluster Checks easily
     ## The name must be unique and must be dot-separated tokens with the following restrictions:
-    ## * Lowercase letters, numbers, and hyphens only.
+    ## * Lowercase letters, numbers, and githyphens only.
     ## * Must start with a letter.
     ## * Must end with a number or a letter.
     ## * Overall length should not be higher than 80 characters.
@@ -76,7 +76,7 @@ datadog:
 
     # datadog.site -- The site of the Datadog intake to send Agent data to
     ## Set to 'datadoghq.eu' to send data to the EU site.
-    site: datadog.eu  # datadoghq.com
+    site: datadoghq.eu  # datadoghq.com
 
     # datadog.dd_url -- The host of the Datadog intake server to send Agent data to, only set this option if you need the Agent to send data to a custom URL
     ## Overrides the site setting defined in "site".
