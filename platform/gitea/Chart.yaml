@@ -3,5 +3,9 @@ name: gitea
 version: 0.0.0
 dependencies:
   - name: gitea
+<<<<<<< HEAD
     version: 5.0.4
+=======
+    version: 5.0.3
+>>>>>>> khuedoan-master
     repository: https://dl.gitea.io/charts/

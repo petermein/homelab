@@ -11,11 +11,7 @@ resource "cloudflare_argo_tunnel" "jupiter" {
 
 # Not proxied, not accessible. Just a record for auto-created CNAMEs by external-dns.
 resource "cloudflare_record" "tunnel" {
-<<<<<<< HEAD
-  zone_id = data.cloudflare_zone.mein_nl.id
-=======
   zone_id = data.cloudflare_zone.zone.id
->>>>>>> be9817458ca90384f21059c81ae3168cbac6237e
   type    = "CNAME"
   name    = "jupiter-tunnel"
   value   = "${cloudflare_argo_tunnel.jupiter.id}.cfargotunnel.com"
