@@ -1,18 +1,77 @@
 seafile:
-  ingress:
+
+  image:
+    # -- image repository
+    repository: seafileltd/seafile-mc
+    # -- image tag
+    tag: 8.0.7
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+
+  # -- environment variables. See more environment variables in the [seafile documentation](https://manual.seafile.com/).
+  # @default -- See below
+  env:
+    # -- Set the container timezone
+    TIME_ZONE: Europe/Amsterdam
+    # -- The hostname of your database
+    DB_HOST: mariadb-galera.mariadb-galera.svc.cluster.local
+    # -- The root password for mysql (used for initial setup)
+    DB_ROOT_PASSWD: XL3ePsvRu2%
+    # -- The initial admin user's email
+    SEAFILE_ADMIN_EMAIL: peter@mein.nl
+    # -- The initial admin user's password
+    SEAFILE_ADMIN_PASSWORD: seafileadminpass
+    # -- The hostname for the server (set to your ingress hostname)
+    SEAFILE_SERVER_HOSTNAME: seafile.jupiter.mein.nl
+    SEAFILE_SERVER_LETSENCRYPT: true
+
+  # -- Configures service settings for the chart.
+  # @default -- See values.yaml
+  service:
     main:
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-        - host: &host seafile.jupiter.mein.nl
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: seafile-tls-certificate
-          hosts:
-            - *host
+      ports:
+        http:
+          port: 80
+
+  ingress:
+    # -- Enable and configure ingress settings for the chart under this key.
+    # @default -- See values.yaml
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: &host seafile.jupiter.mein.nl
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: seafile-tls-certificate
+            hosts:
+              - *host
+
+  # -- Enable and configure mariadb database subchart under this key.
+  #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+  # @default -- See values.yaml
   mariadb:
-    enabled: true
+    enabled: false
+    architecture: standalone
+    auth:
+      database: seafile
+      username: seafile
+      password: seafilepass
+      rootPassword: seafilerootpass
+    primary:
+      persistence:
+        enabled: false
+        # storageClass: ""
+
+  # -- Configure persistence settings for the chart under this key.
+  # @default -- See values.yaml
+  persistence: {}
+    # shared:
+    #   enabled: false
+
+
