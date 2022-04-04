@@ -11,6 +11,12 @@ terraform {
       version = "~> 3.11.0"
     }
 
+    b2 = {
+      source  = "Backblaze/b2"
+      version = "~> 0.7.0"
+      version = "~> 3.11.0"
+    }
+
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "~> 2.9.0"

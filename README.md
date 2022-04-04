@@ -52,6 +52,8 @@ Project status: **Alpha** (see [roadmap](#roadmap) below)
 - [x] Automated bare metal provisioning with PXE boot
 - [x] Automated Kubernetes installation and management
 - [x] Installing and managing applications using GitOps
+- [x] Automatic rolling upgrade for OS and Kubernetes
+- [x] Automatically update apps (with approval)
 - [x] Modular architecture, easy to add or remove features/components
 - [x] Automated certificate management
 - [x] Automatically update DNS records for exposed services
@@ -136,9 +138,14 @@ They can't capture all of the project's features, but they are sufficient to get
     <td>DNS and Tunnel</td>
   </tr>
   <tr>
-    <td><img width="32" src="https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png"></td>
+    <td><img width="32" src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"></td>
     <td><a href="https://www.docker.com">Docker</a></td>
     <td>Ephermeral PXE server and convenient tools container</td>
+  </tr>
+  <tr>
+    <td><img width="32" src="https://github.com/kubernetes-sigs/external-dns/raw/master/img/external-dns.png"></td>
+    <td><a href="https://github.com/kubernetes-sigs/external-dns">ExternalDNS</a></td>
+    <td>Synchronizes exposed Kubernetes Services and Ingresses with DNS providers</td>
   </tr>
   <tr>
     <td><img width="32" src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Gitea_Logo.svg"></td>
@@ -191,6 +198,11 @@ They can't capture all of the project's features, but they are sufficient to get
     <td>Systems monitoring and alerting toolkit</td>
   </tr>
   <tr>
+    <td><img width="32" src="https://docs.renovatebot.com/assets/images/logo.png"></td>
+    <td><a href="https://www.whitesourcesoftware.com/free-developer-tools/renovate">Renovate</a></td>
+    <td>Automatically update dependencies</td>
+  </tr>
+  <tr>
     <td><img width="32" src="https://avatars.githubusercontent.com/u/75713131?s=200&v=4"></td>
     <td><a href="https://rockylinux.org">Rocky Linux</a></td>
     <td>Base OS for Kubernetes nodes</td>
@@ -214,7 +226,7 @@ They can't capture all of the project's features, but they are sufficient to get
 
 ## Get Started
 
-- [Try it out on a VM](https://homelab.khuedoan.com/try-on-a-vm.html) without any hardware
+- [Try it out locally](https://homelab.khuedoan.com/try-locally.html) without any hardware
 - [Deploy on real hardware](https://homelab.khuedoan.com/deployment) for real workload
 
 ## Roadmap
@@ -256,4 +268,8 @@ If not, see <https://www.gnu.org/licenses>.
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/khuedoan/homelab.svg)](https://starchart.cc/khuedoan/homelab)
+<<<<<<< HEAD
 >>>>>>> 8442b6d98469b5ddab0280f783a0efe72b6aea7d
+=======
+>>>>>>> 062cdd53765184bc0427123ae458d3bbe60c152f
+>>>>>>> khuedoan-master

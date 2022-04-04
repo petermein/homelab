@@ -1,4 +1,3 @@
-.vagrant/
 .venv/
 .ssh/
 book/
@@ -9,8 +8,5 @@ book/
 *.tgz
 *kubeconfig.yaml
 Chart.lock
-<<<<<<< HEAD
 .DS_Store
 go.sum
-=======
->>>>>>> e27ecd898ecb567ce29bea8bf8fadcd613702c1a

@@ -95,6 +95,7 @@ crushftp:
     - name: paperless-consume
       claimName: paperless-consume
       mountPath: /mnt/FTP/Shared/scan
+      
   configVolume:
     size: 1Gi
   loadBalancerIp: 127.0.0.1

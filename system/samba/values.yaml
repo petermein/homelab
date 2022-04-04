@@ -21,7 +21,7 @@ samba:
     TZ: Europe/Amsterdam
     # SAMBA_WORKGROUP: NT-Domain-Name or Workgroup-Name. (default WORKGROUP)
     SAMBA_SERVER_STRING: europa
-    # SAMBA_LOG_LEVEL: Log level. (default 0)
+    SAMBA_LOG_LEVEL: 1
     # SAMBA_FOLLOW_SYMLINKS: Allow to follow symlinks. (default yes)
     # SAMBA_WIDE_LINKS: Controls whether or not links in the UNIX file system may be followed by the server. (default yes)
     SAMBA_HOSTS_ALLOW: 213.34.1.38/32 37.97.253.87/32 192.168.1.0/24 10.42.0.0/16 127.0.0.0/8

@@ -1,4 +1,4 @@
-data "cloudflare_zone" "zone" {
+data "cloudflare_zone" "mein_nl" {
   zone_id = "f2dbeb2dca3e055df71df866b8188ce7"
 }
 
