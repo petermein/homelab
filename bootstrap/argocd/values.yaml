@@ -4,6 +4,7 @@ argo-cd:
       - --insecure
     config:
       statusbadge.enabled: 'true'
+
       resource.customizations.health.argoproj.io_Application: |
         hs = {}
         hs.status = "Progressing"
@@ -55,6 +56,8 @@ argo-cd:
       serviceMonitor:
         enabled: true
   controller:
+    args:
+      repoServerTimeoutSeconds: "180"
     metrics: *metrics
   repoServer:
     metrics: *metrics
