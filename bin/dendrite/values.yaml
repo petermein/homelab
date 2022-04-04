@@ -1,3 +1,25 @@
+elementweb:
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      external-dns.alpha.kubernetes.io/target: "homelab-tunnel.khuedoan.com"
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    hosts:
+      - host: &frontend_host chat.khuedoan.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: element-tls-certificate
+        hosts:
+          - *frontend_host
+  config:
+    default:
+      base_url: https://matrix.khuedoan.com
+      server_name: khuedoan.com
+
 dendrite:
   polylith: false
   image:
@@ -5,7 +27,11 @@ dendrite:
     pullPolicy: IfNotPresent
   configuration:
     version: 2
+<<<<<<< HEAD:bin/dendrite/values.yaml
     servername: &host matrix.jupiter.mein.nl
+=======
+    servername: &backend_host matrix.khuedoan.com
+>>>>>>> 062cdd53765184bc0427123ae458d3bbe60c152f:apps/matrix/values.yaml
     database:
       host:  "dendrite-postgresql:5432"
       user:  "dendrite"
@@ -52,11 +78,11 @@ dendrite:
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: 32m
     hosts:
-      - host: *host
+      - host: *backend_host
         paths:
           - path: /
             pathType: Prefix
     tls:
       - secretName: dendrite-tls-certificate
         hosts:
-          - *host
+          - *backend_host

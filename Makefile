@@ -1,8 +1,12 @@
 .POSIX:
 
-default: metal bootstrap
+default: metal bootstrap wait
 
-all: default external
+all: metal bootstrap external wait
+
+configure:
+	./scripts/configure
+	git status
 
 .PHONY: metal
 metal:
@@ -15,6 +19,9 @@ bootstrap:
 .PHONY: external
 external:
 	make -C external
+
+wait:
+	./scripts/wait-main-apps
 
 .PHONY: tools
 tools:

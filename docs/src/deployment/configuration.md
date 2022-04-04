@@ -3,14 +3,14 @@
 ## Fork this repository
 
 Because this repository ([khuedoan/homelab](https://github.com/khuedoan/homelab)) applies GitOps practices,
-it's the source of truth for my homelab, so you'll need to folk it to make it yours.
+it's the source of truth for my homelab, so you'll need to fork it to make it yours.
 
 ## Choose the environment
 
-| Environment | Branch   | Recommended setup             |
-| ----------- | -------- | ----------------------------- |
-| Production  | `master` | Real hardware                 |
-| Development | `dev`    | A single Vagrant VM           |
+| Environment | Branch   | Recommended setup                     |
+| ----------- | -------- | ------------------------------------- |
+| Production  | `master` | Real hardware                         |
+| Development | `dev`    | A local [k3d](https://k3d.io) cluster |
 
 For example, if you're trying out the dev VM, use the development environment:
 
@@ -22,10 +22,16 @@ git checkout dev
 
 ## Run the configure script
 
+Open the tools container if you haven't already:
+
+```sh
+make tools
+```
+
 Run the following script to configure the homelab:
 
 ```sh
-./configure.py
+make configure
 ```
 
 Example input:
@@ -33,7 +39,6 @@ Example input:
 <!-- TODO update example input -->
 
 ```
-$ ./configure.py
 Text editor (nvim):
 Enter seed repo (github.com/khuedoan/homelab): github.com/example/homelab
 Enter your domain (khuedoan.com): example.com

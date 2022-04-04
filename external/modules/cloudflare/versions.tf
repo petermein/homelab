@@ -1,19 +1,7 @@
 terraform {
-  required_version = "~> 1.1.0"
-
-  backend "local" {
-
-  }
-
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.9.0"
-    }
-
-    b2 = {
-      source  = "Backblaze/b2"
-      version = "~> 0.7.0"
       version = "~> 3.11.0"
     }
 
