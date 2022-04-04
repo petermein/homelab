@@ -394,7 +394,7 @@ datadog:
       enableTCPQueueLength: false
 
       # datadog.systemProbe.enableOOMKill -- Enable the OOM kill eBPF-based check
-      enableOOMKill: false
+      enableOOMKill: true
 
       # datadog.systemProbe.enableRuntimeCompiler -- Enable the runtime compiler for eBPF probes
       enableRuntimeCompiler: false
