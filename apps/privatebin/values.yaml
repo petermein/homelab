@@ -7,8 +7,7 @@ privatebin:
       external-dns.alpha.kubernetes.io/exclude: 'true'
     hosts:
       - host: &host privatebin.jupiter.mein.nl
-        paths:
-          - /
+        path: /
     tls:
       - secretName: privatebin-tls-certificate
         hosts:
