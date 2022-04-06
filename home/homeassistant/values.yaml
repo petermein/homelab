@@ -152,6 +152,7 @@ home-assistant:
         ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
+          nginx.org/websocket-services: home-assistant
         hosts:
         - host: &config homeassistant-config.europa.jupiter.mein.nl
           paths:
