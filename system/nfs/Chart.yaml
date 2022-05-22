@@ -1,7 +1,0 @@
-apiVersion: v2
-name: nfs
-version: 0.0.0
-dependencies:
-  - name: nfs-server-provisioner
-    version: 1.4.0
-    repository: https://kubernetes-sigs.github.io/nfs-ganesha-server-and-external-provisioner/
