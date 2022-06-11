@@ -4,5 +4,18 @@
     "config:base"
   ],
   "dependencyDashboard": true,
-  "ignorePaths": ["disable/**", "system/datadog/**"]
+  "ignorePaths": ["disable/**", "system/datadog/**"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    }
+  ]
 }
