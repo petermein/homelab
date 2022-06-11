@@ -3,6 +3,11 @@
   "extends": [
     "config:base"
   ],
+  "enabledManagers": [
+    "docker"
+  ],
+  "dependencyDashboard": true,
+  "ignorePaths": ["disable/**"],
   "packageRules": [
     {
       "matchPackagePatterns": [
