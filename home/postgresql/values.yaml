@@ -88,7 +88,7 @@ postgresql:
   image:
     registry: docker.io
     repository: bitnami/postgresql
-    tag: 14.1.0-debian-10-r80
+    tag: 14.2.0-debian-10-r80
     ## Specify a imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
     ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -1326,6 +1326,6 @@ postgresql:
     postgresql:
       image:
         repository: bitnami/postgresql
-        tag: 14.2.0
+        tag: 14.3.0
       auth:
         existingSecret: 

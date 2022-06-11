@@ -3,7 +3,7 @@ module git.khuedoan.com/khuedoan/homelab/vault/init
 go 1.17
 
 require (
-	github.com/hashicorp/vault/api v1.5.0
+	github.com/hashicorp/vault/api v1.7.2
 	github.com/sethvargo/go-password v0.2.0
 	gopkg.in/yaml.v2 v2.4.0
 )
