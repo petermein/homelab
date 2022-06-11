@@ -6,5 +6,5 @@ dependencies:
     version: 8.6.0
     repository: https://k8s-at-home.com/charts/
   - name: crushftp
-    version: 1.0.2
+    version: 1.0.3
     repository: https://greggbjensen.github.io/helm-crushftp
