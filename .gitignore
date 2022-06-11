@@ -10,3 +10,5 @@ book/
 Chart.lock
 .DS_Store
 go.sum
+
+config.js
