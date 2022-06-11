@@ -1,4 +1,4 @@
-home-assistant:
+homeassistant:
   image:
     # -- image repository
     repository: homeassistant/home-assistant
