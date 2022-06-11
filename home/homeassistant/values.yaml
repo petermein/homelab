@@ -138,7 +138,7 @@ home-assistant:
       enabled: true
       image:
         repository: codercom/code-server
-        tag: 4.2.0
+        tag: 4.4.0
       workingDir: "/config"
       args:
       - --auth
