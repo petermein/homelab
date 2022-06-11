@@ -4,5 +4,5 @@
     "config:base"
   ],
   "dependencyDashboard": true,
-  "ignorePaths": ["disable/**", "system/datadog/**"],
+  "ignorePaths": ["disable/**", "system/datadog/**"]
 }
