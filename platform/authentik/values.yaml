@@ -2,7 +2,11 @@ authentik:
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
-      password: &postgresql_password IKnowThisIsNotASecurePasswordJust4Testing    # TODO
+      host: postgresql.postgresql.svc.cluster.local
+      username: authentik
+      password: secret    # TODO
+    redis:
+      host: redis-master.redis.svc.cluster.local
 
   ingress:
     enabled: true
@@ -22,7 +26,7 @@ authentik:
 #TODO move to shared postgres
   postgresql:
     enabled: false
-    postgresqlPassword: *postgresql_password
+    postgresqlPassword: test
     persistence:
       enabled: true
       storageClass: longhorn
