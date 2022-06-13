@@ -57,9 +57,9 @@ pihole:
     loadBalancerIPv6: ""
 
     # -- Annotations for the DNS service
-    annotations: {}
-      # metallb.universe.tf/address-pool: network-services
-      # metallb.universe.tf/allow-shared-ip: pihole-svc
+    annotations:
+      metallb.universe.tf/address-pool: network-services
+      metallb.universe.tf/allow-shared-ip: pihole-svc
 
   # -- Configuration for the DHCP service on port 67
   serviceDhcp:
