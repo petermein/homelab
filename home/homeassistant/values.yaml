@@ -3,7 +3,7 @@ home-assistant:
     # -- image repository
     repository: homeassistant/home-assistant
     # -- image tag
-    tag: 2022.6.5
+    tag: 2022.6.7
     # -- image pull policy
     pullPolicy: IfNotPresent
 
@@ -90,7 +90,7 @@ home-assistant:
     enabled: false
     image:
       repository: bitnami/postgresql
-      tag: 14.3.0
+      tag: 14.4.0
     postgresqlUsername: home-assistant
     postgresqlPassword: home-assistant-pass
     postgresqlDatabase: home-assistant
