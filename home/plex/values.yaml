@@ -42,8 +42,8 @@ plex:
         http:
           port: 32400
     dnla-tcp:
-      enabled: false
-      type: NodePort
+      enabled: true
+      type: LoadBalancer
       ports:
         dnla-tcp:
           enabled: true
@@ -52,8 +52,8 @@ plex:
           targetPort: 32469
       externalTrafficPolicy: Local
     dnla-udp:
-      enabled: false
-      type: NodePort
+      enabled: true
+      type: LoadBalancer
       ports:
         dnla-udp:
           enabled: true
