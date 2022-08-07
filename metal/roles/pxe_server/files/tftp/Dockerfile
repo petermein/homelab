@@ -1,4 +1,4 @@
-FROM alpine:20220316
+FROM alpine:20220715
 
 RUN apk add busybox tftp-hpa
 
