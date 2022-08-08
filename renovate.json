@@ -5,6 +5,7 @@
   ],
   "dependencyDashboard": true,
   "ignorePaths": ["disable/**", "system/datadog/**"],
+  "includeForks": true,
   "packageRules": [
     {
       "matchPackagePatterns": [
