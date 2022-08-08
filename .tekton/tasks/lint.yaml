@@ -20,7 +20,7 @@ spec:
       args:
         - .
     - name: terraform
-      image: hashicorp/terraform:1.2.3
+      image: hashicorp/terraform:1.2.6
       command:
         - terraform
       args:
