@@ -5,6 +5,8 @@ gitea:
     annotations:
       external-dns.alpha.kubernetes.io/exclude: 'true'
       cert-manager.io/cluster-issuer: letsencrypt-prod
+      hajimari.io/appName: Gitea
+      hajimari.io/icon: git
     hosts:
       - host: &host git.jupiter.mein.nl
         paths:

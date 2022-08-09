@@ -16,7 +16,7 @@ paperless:
     # -- Port to use
     PAPERLESS_PORT: 8000
 
-  envFrom: 
+  envFrom:
     - secretRef:
         name: paperless-secret
 
@@ -64,9 +64,10 @@ paperless:
       ingressClassName: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        external-dns.alpha.kubernetes.io/exclude: 'true'
+        hajimari.io/appName: Paperless
+        hajimari.io/icon: file-document
       hosts:
-        - host: &host paperless.jupiter.mein.nl
+        - host: &host paperless.khuedoan.com
           paths:
             - path: /
               pathType: Prefix
@@ -74,12 +75,11 @@ paperless:
         - secretName: paperless-tls-certificate
           hosts:
             - *host
-
   postgresql:
     enabled: false
 
 crushftp:
-      
+
     # Default values for crushftp.
 
   # Project specific
@@ -95,7 +95,7 @@ crushftp:
     - name: paperless-consume
       claimName: paperless-consume
       mountPath: /mnt/FTP/Shared/scan
-      
+
   configVolume:
     size: 1Gi
   loadBalancerIp: 127.0.0.1

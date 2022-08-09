@@ -14,5 +14,5 @@ cloudflared:
 
   podMonitor:
     enabled: true
-    metricsEndpoinrenovts:
+    metricsEndpoints:
       - port: http

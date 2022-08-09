@@ -1,0 +1,113 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: homelab
+spec:
+  workspaces:
+    - name: shared-data
+  tasks:
+
+    - name: git-clone
+      taskRef:
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-data
+      params:
+        - name: url
+          value: http://gitea-http.gitea:3000/ops/homelab
+        - name: revision
+          value: master
+
+    - name: tools
+      runAfter:
+        - git-clone
+      workspaces:
+        - name: source
+          workspace: shared-data
+        # TODO secure registry
+        # - name: dockerconfig
+        #   workspace: dockerconfig
+      taskRef:
+        name: kaniko
+      params:
+        - name: CONTEXT
+          value: ./tools
+        - name: IMAGE
+          value: registry.khuedoan.com/tools:latest
+        - name: EXTRA_ARGS
+          value:
+            - --cache=true
+
+    - name: pre-commit
+      runAfter:
+        - tools
+      workspaces:
+        - name: source
+          workspace: shared-data
+      taskSpec:
+        workspaces:
+          - name: source
+        stepTemplate:
+          image: registry.khuedoan.com/tools:latest
+          workingDir: /workspace/source
+        steps:
+          - name: run
+            command:
+              - pre-commit
+            args:
+              - run
+              # - --all-files
+              - --color=always
+
+    - name: external
+      runAfter:
+        - pre-commit
+      workspaces:
+        - name: source
+          workspace: shared-data
+      taskSpec:
+        workspaces:
+          - name: source
+        volumes:
+          - name: terraform-secrets
+            secret:
+              secretName: terraform-secrets
+        stepTemplate:
+          image: registry.khuedoan.com/tools:latest
+          workingDir: /workspace/source/external
+          volumeMounts:
+            - name: terraform-secrets
+              mountPath: /root/.terraform.d/credentials.tfrc.json
+              subPath: credentials.tfrc.json
+            - name: terraform-secrets
+              mountPath: /workspace/source/external/terraform.tfvars
+              subPath: terraform.tfvars
+          command:
+            - make
+        steps:
+          - name: plan
+            args:
+              - plan
+          - name: apply
+            args:
+              - apply
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: homelab
+spec:
+  serviceAccountName: tekton-admin
+  pipelineRef:
+    name: homelab
+  workspaces:
+    - name: shared-data
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi

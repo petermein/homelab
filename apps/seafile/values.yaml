@@ -73,5 +73,3 @@ seafile:
   persistence: {}
     # shared:
     #   enabled: false
-
-

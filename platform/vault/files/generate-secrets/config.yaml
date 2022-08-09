@@ -1,22 +1,19 @@
+# Gitea
 - path: gitea/admin
   data:
     - key: password
       length: 32
       special: true
-- path: gitea/renovate
+
+# Dex
+- path: dex/grafana
   data:
-    - key: id
-      length: 20
-      special: false
-    - key: token
-      length: 40
-      special: false
-- path: trow/admin
-  data:
-    - key: password
+    - key: client_secret
       length: 32
-      special: true
-- path: matrix/bot/alert
+      special: false
+
+# Trow
+- path: trow/admin
   data:
     - key: password
       length: 32
