@@ -29,7 +29,7 @@ hajimari:
           - name: Documentation
             url: https://homelab.jupiter.mein.nl
           - name: Public GitHub repository
-            url: https://github.com/khuedoan/homelab
+            url: https://github.com/infratron/homelab
       - name: Managed services
         links:
           - name: Terraform Cloud
