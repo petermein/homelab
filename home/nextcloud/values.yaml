@@ -167,7 +167,7 @@ nextcloud:
     ## Strategy used to replace old pods
     ## IMPORTANT: use with care, it is suggested to leave as that for upgrade purposes
     ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
-    strategy: 
+    strategy:
       type: Recreate
       # type: RollingUpdate
       # rollingUpdate:
@@ -177,8 +177,8 @@ nextcloud:
     ##
     ## Extra environment variables
     extraEnv:
-     - name: REDIS_HOST
-       value: redis-master.redis.svc.cluster.local
+      - name: REDIS_HOST
+        value: redis-master.redis.svc.cluster.local
 
     # Extra mounts for the pods. Example shown is for connecting a legacy NFS volume
     # to NextCloud pods in Kubernetes. This can then be configured in External Storage
@@ -193,11 +193,11 @@ nextcloud:
     #    mountPath: "/legacy_data"
 
     # Extra secuurityContext parameters. For example you may need to define runAsNonRoot directive
-    # extraSecurityContext:
-    #   runAsUser: "33"
-    #   runAsGroup: "33"
-    #   runAsNonRoot: true
-    #   readOnlyRootFilesystem: true
+    extraSecurityContext:
+      runAsUser: "82"
+      runAsGroup: "82"
+      runAsNonRoot: true
+      readOnlyRootFilesystem: true
 
   nginx:
     ## You need to set an fpm version of the image for nextcloud if you want to use nginx!
