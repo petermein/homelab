@@ -1,5 +1,5 @@
 ingress-traefik:
-    # Default values for Traefik
+  # Default values for Traefik
   image:
     name: traefik
     # defaults to appVersion
@@ -14,7 +14,7 @@ ingress-traefik:
     # Can be either Deployment or DaemonSet
     kind: Deployment
     # Number of pods of the deployment (only applies when kind == Deployment)
-    replicas: 1
+    replicas: 2
     # Number of old history to retain to allow rollback (If not set, default Kubernetes value is set to 10)
     # revisionHistoryLimit: 1
     # Amount of time (in seconds) before Kubernetes will send the SIGKILL signal if Traefik does not shut down
@@ -30,7 +30,8 @@ ingress-traefik:
     # Additional Pod labels (e.g. for filtering Pod by custom labels)
     podLabels: {}
     # Additional containers (e.g. for metric offloading sidecars)
-    additionalContainers: []
+    additionalContainers:
+      []
       # https://docs.datadoghq.com/developers/dogstatsd/unix_socket/?tab=host
       # - name: socat-proxy
       # image: alpine/socat:1.0.5
@@ -39,12 +40,14 @@ ingress-traefik:
       #   - name: dsdsocket
       #     mountPath: /socket
     # Additional volumes available for use with initContainers and additionalContainers
-    additionalVolumes: []
+    additionalVolumes:
+      []
       # - name: dsdsocket
       #   hostPath:
       #     path: /var/run/statsd-exporter
     # Additional initContainers (e.g. for setting file permission as shown below)
-    initContainers: []
+    initContainers:
+      []
       # The "volume-permissions" init container is required if you run into permission issues.
       # Related issue: https://github.com/traefik/traefik/issues/6972
       # - name: volume-permissions
@@ -58,7 +61,8 @@ ingress-traefik:
     # Custom pod DNS policy. Apply if `hostNetwork: true`
     # dnsPolicy: ClusterFirstWithHostNet
     # Additional imagePullSecrets
-    imagePullSecrets: []
+    imagePullSecrets:
+      []
       # - name: myRegistryKeySecretName
 
   # Pod disruption budget
@@ -72,7 +76,7 @@ ingress-traefik:
   # Use ingressClass. Ignored if Traefik version < 2.3 / kubernetes < 1.18.x
   ingressClass:
     # true is not unit-testable yet, pending https://github.com/rancher/helm-unittest/pull/12
-    enabled: false
+    enabled: true
     isDefaultClass: false
     # Use to force a networking.k8s.io API Version for certain CI/CD applications. E.g. "v1beta1"
     fallbackApiVersion: ""
@@ -139,7 +143,8 @@ ingress-traefik:
       allowEmptyServices: false
       # ingressClass: traefik-internal
       # labelSelector: environment=production,method=traefik
-      namespaces: []
+      namespaces:
+        []
         # - "default"
 
     kubernetesIngress:
@@ -148,7 +153,8 @@ ingress-traefik:
       allowEmptyServices: false
       # ingressClass: traefik-internal
       # labelSelector: environment=production,method=traefik
-      namespaces: []
+      namespaces:
+        []
         # - "default"
       # IP used for Kubernetes Ingress endpoints
       publishedService:
@@ -174,7 +180,8 @@ ingress-traefik:
   #   type: configMap
 
   # Additional volumeMounts to add to the Traefik container
-  additionalVolumeMounts: []
+  additionalVolumeMounts:
+    []
     # For instance when using a logshipper for access logs
     # - name: traefik-logs
     #   mountPath: /var/log/traefik
@@ -201,7 +208,8 @@ ingress-traefik:
       # them to the selected output. In some cases, this option can greatly help performances.
       # bufferingSize: 100
       # Filtering https://docs.traefik.io/observability/access-logs/#filtering
-      filters: {}
+      filters:
+        {}
         # statuscodes: "200,300-302"
         # retryattempts: true
         # minduration: 10ms
@@ -210,12 +218,14 @@ ingress-traefik:
       fields:
         general:
           defaultmode: keep
-          names: {}
+          names:
+            {}
             # Examples:
             # ClientUsername: drop
         headers:
           defaultmode: drop
-          names: {}
+          names:
+            {}
             # Examples:
             # User-Agent: redact
             # Authorization: drop
@@ -233,7 +243,8 @@ ingress-traefik:
     # statsd:
     #   address: localhost:8125
 
-  tracing: {}
+  tracing:
+    {}
     # instana:
     #   enabled: true
     # datadog:
@@ -335,7 +346,7 @@ ingress-traefik:
       # Set TLS at the entrypoint
       # https://doc.traefik.io/traefik/routing/entrypoints/#tls
       tls:
-        enabled: false
+        enabled: true
         # this is the name of a TLSOption definition
         options: ""
         certResolver: ""
@@ -378,7 +389,8 @@ ingress-traefik:
     enabled: true
     type: LoadBalancer
     # Additional annotations applied to both TCP and UDP services (e.g. for cloud provider specific config)
-    annotations: {}
+    annotations:
+      - metallb.universe.tf/address-pool: traefik
     # Additional annotations for TCP service only
     annotationsTCP: {}
     # Additional annotations for UDP service only
@@ -387,14 +399,17 @@ ingress-traefik:
     labels: {}
     # Additional entries here will be added to the service spec.
     # Cannot contain type, selector or ports entries.
-    spec: {}
+    spec:
+      {}
       # externalTrafficPolicy: Cluster
       # loadBalancerIP: "1.2.3.4"
       # clusterIP: "2.3.4.5"
-    loadBalancerSourceRanges: []
+    loadBalancerSourceRanges:
+      []
       # - 192.168.0.1/32
       # - 172.16.0.0/16
-    externalIPs: []
+    externalIPs:
+      []
       # - 1.2.3.4
     # One of SingleStack, PreferDualStack, or RequireDualStack.
     # ipFamilyPolicy: SingleStack
@@ -429,7 +444,7 @@ ingress-traefik:
   persistence:
     enabled: false
     name: data
-  #  existingClaim: ""
+    #  existingClaim: ""
     accessMode: ReadWriteOnce
     size: 128Mi
     # storageClass: ""
@@ -485,7 +500,8 @@ ingress-traefik:
   # Additional serviceAccount annotations (e.g. for oidc authentication)
   serviceAccountAnnotations: {}
 
-  resources: {}
+  resources:
+    {}
     # requests:
     #   cpu: "100m"
     #   memory: "50Mi"
