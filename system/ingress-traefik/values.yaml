@@ -393,9 +393,12 @@ ingress-traefik:
     annotations:
       metallb.universe.tf/address-pool: traefik
     # Additional annotations for TCP service only
-    annotationsTCP: {}
+    annotationsTCP:
+      metallb.universe.tf/address-pool: traefik
     # Additional annotations for UDP service only
-    annotationsUDP: {}
+    annotationsUDP:
+      metallb.universe.tf/address-pool: traefik
+
     # Additional service labels (e.g. for filtering Service by custom labels)
     labels: {}
     # Additional entries here will be added to the service spec.
@@ -406,8 +409,7 @@ ingress-traefik:
       # loadBalancerIP: "1.2.3.4"
       # clusterIP: "2.3.4.5"
     loadBalancerSourceRanges:
-      []
-      # - 192.168.0.1/32
+      - 192.168.0.1/32
       # - 172.16.0.0/16
     externalIPs:
       []
