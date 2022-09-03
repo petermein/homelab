@@ -2,8 +2,10 @@ argo-cd:
   server:
     extraArgs:
       - --insecure
+      - --repo-server-timeout-seconds
+      - "500"
     config:
-      statusbadge.enabled: 'true'
+      statusbadge.enabled: "true"
 
       resource.customizations.health.argoproj.io_Application: |
         hs = {}
@@ -42,6 +44,9 @@ argo-cd:
       repoServerTimeoutSeconds: "180"
     metrics: *metrics
   repoServer:
+    env:
+      - name: "ARGOCD_EXEC_TIMEOUT"
+        value: "5m"
     metrics: *metrics
   redis:
     metrics: *metrics
