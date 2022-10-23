@@ -13,7 +13,7 @@ import sys
 from rich.console import Console
 from kubernetes import client, config
 
-# https://git.khuedoan.com/user/settings/applications
+# https://git.jupiter.mein.nl/user/settings/applications
 # Doing this properly inside the cluster requires:
 # - Kubernetes service account
 # - Vault Kubernetes auth

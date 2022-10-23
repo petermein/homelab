@@ -31,7 +31,7 @@ home-assistant:
           nginx.org/websocket-services: home-assistant
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
-          - host: &host homeassistant.europa.jupiter.mein.nl
+          - host: &host homeassistant.jupiter.mein.nl
             paths:
               - path: /
                 pathType: Prefix
@@ -154,7 +154,7 @@ home-assistant:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           nginx.org/websocket-services: home-assistant
         hosts:
-        - host: &config homeassistant-config.europa.jupiter.mein.nl
+        - host: &config homeassistant-config.jupiter.mein.nl
           paths:
           - path: /
             pathType: Prefix

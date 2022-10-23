@@ -15,31 +15,31 @@ from selenium import webdriver
 apps = [
     {
         'name': 'home',
-        'url': 'https://home.khuedoan.com'
+        'url': 'https://home.jupiter.mein.nl'
     },
     {
         'name': 'gitea',
-        'url': 'https://git.khuedoan.com/ops/homelab'
+        'url': 'https://git.jupiter.mein.nl/ops/homelab'
     },
     {
         'name': 'argocd',
-        'url': 'https://argocd.khuedoan.com/applications/root'
+        'url': 'https://argocd.jupiter.mein.nl/applications/root'
     },
     {
         'name': 'vault',
-        'url': 'https://vault.khuedoan.com/ui/vault/secrets'
+        'url': 'https://vault.jupiter.mein.nl/ui/vault/secrets'
     },
     {
         'name': 'tekton',
-        'url': 'https://tekton.khuedoan.com/#/namespaces/tekton-pipelines/pipelineruns/homelab?pipelineTask=external&step=plan'
+        'url': 'https://tekton.jupiter.mein.nl/#/namespaces/tekton-pipelines/pipelineruns/homelab?pipelineTask=external&step=plan'
     },
     {
         'name': 'matrix',
-        'url': 'https://chat.khuedoan.com/#/room/#random:matrix.khuedoan.com'
+        'url': 'https://chat.jupiter.mein.nl/#/room/#random:matrix.jupiter.mein.nl'
     },
     {
         'name': 'grafana',
-        'url': 'https://grafana.khuedoan.com/d/efa86fd1d0c121a26444b636a3f509a8/kubernetes-compute-resources-cluster'  # wtf is this ID
+        'url': 'https://grafana.jupiter.mein.nl/d/efa86fd1d0c121a26444b636a3f509a8/kubernetes-compute-resources-cluster'  # wtf is this ID
     },
 ]
 
