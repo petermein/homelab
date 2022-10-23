@@ -2,8 +2,8 @@
 
 VALUES="values.yaml"
 
-curl -fks --connect-timeout 5 https://git.jupiter.mein.nl \
-    || extra_args="--values values-seed.yaml"
+kubectl get ingress gitea --namespace gitea \
+    || VALUES="values-seed.yaml"
 
 helm template \
     --include-crds \

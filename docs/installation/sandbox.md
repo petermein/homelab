@@ -2,17 +2,6 @@
 
 The sandbox is intended for trying out the homelab without any hardware or testing changes before applying them to the production environment.
 
-## Caveats compare to production environment
-
-The development cluster doesn't have the following features:
-
-- There is no valid domain name, hence no SSL certificates (some services require valid SSL certificates)
-- Only accessible on the host machine
-- No backup
-<!-- TODO more caveats here -->
-
-Please keep in mind that the development cluster may be unstable and things may break (it's for development after all).
-
 ## Prerequisites
 
 Host machine:
@@ -39,9 +28,17 @@ git checkout dev
 
 Open the tools container, which includes all the tools needed:
 
-```sh
-make tools
-```
+=== "Docker"
+
+    ```sh
+    make tools
+    ```
+
+=== "Nix"
+
+    ```sh
+    nix-shell
+    ```
 
 Build a development cluster and bootstrap it:
 
@@ -57,6 +54,8 @@ make
 
 The homepage should be available at <https://home.127-0-0-1.nip.io> (ignore the security warning because we don't have valid certificates).
 
+See [admin credentials](../post-installation/#admin-credentials) for default passwords.
+
 ## Clean up
 
 Delete the cluster:
@@ -64,3 +63,13 @@ Delete the cluster:
 ```sh
 k3d cluster delete homelab-dev
 ```
+
+## Caveats compare to production environment
+
+The development cluster doesn't have the following features:
+
+- There is no valid domain name, hence no SSL certificates (some services require valid SSL certificates)
+- Only accessible on the host machine
+- No backup
+
+Please keep in mind that the development cluster may be unstable and things may break (it's for development after all).

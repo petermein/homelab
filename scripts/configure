@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # WIP
 # TODO clean this up
@@ -51,7 +51,7 @@ def main() -> None:
         pattern=default_domain,
         replacement=domain,
         paths=[
-            ".tekton",
+            ".ci",
             "apps",
             "bootstrap",
             "platform",

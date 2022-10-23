@@ -1,8 +1,6 @@
 renovate:
   cronjob:
-    # schedule: '0 9 1 * *'  # At 09:00 every month
-    schedule: '*/5 * * * *'  # TODO remove after testing
-    suspend: false
+    schedule: '0 9 * * *'  # Everyday at 09:00    suspend: false
     concurrencyPolicy: 'Forbid'
     failedJobsHistoryLimit: 5
     successfulJobsHistoryLimit: 5
@@ -14,10 +12,6 @@ renovate:
         "platform": "gitea",
         "endpoint": "https://git.jupiter.mein.nl/api/v1",
         "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
-        "token": "7e81319c795c27d16483211cedd81f27058b02c2",
-        "autodiscover": false,
-        "repositories": [
-          "petermein/homelab"
-        ]
+        "autodiscover": true
       }
   existingSecret: renovate-secret
