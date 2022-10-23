@@ -2,9 +2,17 @@
 
 Open the tools container if you haven't already:
 
-```sh
-make tools
-```
+=== "Docker"
+
+    ```sh
+    make tools
+    ```
+
+=== "Nix"
+
+    ```sh
+    nix-shell
+    ```
 
 Build the lab:
 
@@ -19,4 +27,4 @@ Yes it's that simple!
     <script id="asciicast-xkBRkwC6e9RAzVuMDXH3nGHp7" src="https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7.js" async></script>
 
 It will take a while to download everything,
-you can read the [architecture document](../../architecture/overview.md) while waiting for the deployment to complete.
+you can read the [architecture document](../../reference/architecture/overview.md) while waiting for the deployment to complete.
