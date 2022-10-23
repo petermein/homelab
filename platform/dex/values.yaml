@@ -24,7 +24,7 @@ dex:
         secretEnv: GRAFANA_SSO_CLIENT_SECRET
   envFrom:
     - secretRef:
-        name: config
+        name: dex-secrets
   ingress:
     enabled: true
     className: nginx
