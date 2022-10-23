@@ -1,9 +1,8 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
-site_name: Khue's Homelab
-copyright: Copyright &copy; 2020 - 2022 Khue Doan
+site_name: Meins's Homelab
 
-repo_url: https://github.com/khuedoan/homelab
+repo_url: https://github.com/petermein/homelab
 
 theme:
   name: material
