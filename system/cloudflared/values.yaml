@@ -10,7 +10,7 @@ cloudflared:
   config:
     tunnel: homelab
     ingress:
-      - hostname: '*.jupiter.mein.nl'
+      - hostname: '*.mein.nl'
         service: https://ingress-nginx-controller.ingress-nginx:443
         originRequest:
           noTLSVerify: true
