@@ -1,11 +1,17 @@
 cloudflared:
+  image:
+    repository: cloudflare/cloudflared
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "2022.10.2"
+
   credentials:
     existingSecret: cloudflared-credentials
   config:
     tunnel: homelab
     ingress:
       - hostname: '*.jupiter.mein.nl'
-        service: https://ingress-nginx-controller.ingress-nginx
+        service: https://ingress-nginx-controller.ingress-nginx:443
         originRequest:
           noTLSVerify: true
       - service: http_status:404
