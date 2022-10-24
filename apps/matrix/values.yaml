@@ -9,7 +9,7 @@ elementweb:
       hajimari.io/appName: Chat
       hajimari.io/icon: chat
     hosts:
-      - host: &frontend_host chat.jupiter.mein.nl
+      - host: &frontend_host chat.mein.nl
         paths:
           - path: /
             pathType: Prefix
@@ -19,8 +19,8 @@ elementweb:
           - *frontend_host
   config:
     default:
-      base_url: https://matrix.jupiter.mein.nl
-      server_name: jupiter.mein.nl
+      base_url: https://matrix.mein.nl
+      server_name: mein.nl
 
 dendrite:
   polylith: false
@@ -29,7 +29,7 @@ dendrite:
     pullPolicy: IfNotPresent
   configuration:
     version: 2
-    servername: &backend_host matrix.jupiter.mein.nl
+    servername: &backend_host matrix.mein.nl
     database:
       host: matrix-postgresql:5432
       user: dendrite
