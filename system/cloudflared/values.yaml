@@ -3,7 +3,7 @@ cloudflared:
     repository: cloudflare/cloudflared
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "2022.10.2"
+    tag: "2022.10.3"
 
   credentials:
     existingSecret: cloudflared-credentials
