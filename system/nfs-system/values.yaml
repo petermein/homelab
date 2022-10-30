@@ -29,7 +29,7 @@ nfs-subdir-external-provisioner:
 
     # Set a StorageClass name
     # Ignored if storageClass.create is false
-    name: nfs-client
+    name: nfs
 
     # Allow volume to be expanded dynamically
     allowVolumeExpansion: true
@@ -93,7 +93,8 @@ nfs-subdir-external-provisioner:
     # If not set and create is true, a name is generated using the fullname template
     name:
 
-  resources: {}
+  resources:
+    {}
     # limits:
     #  cpu: 100m
     #  memory: 128Mi
