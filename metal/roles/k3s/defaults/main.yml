@@ -9,3 +9,8 @@ k3s_server_config:
     - traefik
   disable-cloud-controller: true
   secrets-encryption: true
+
+k3s_pi_config:
+  node-label:
+    - "machine=pi"
+    - "pi-class=cm3"

@@ -1,5 +1,6 @@
 TODO Metal
 
+Europa
 [ ] Auto install ubuntu
 [ ] Disable GUI
 [ ] Make ssh root posible
@@ -9,3 +10,7 @@ TODO Metal
 [ ] Zpool init for host
 [ ] Set hostname
 [ ] Install iscsi
+
+PI's
+[x] Set hostname
+[ ] Log2ram

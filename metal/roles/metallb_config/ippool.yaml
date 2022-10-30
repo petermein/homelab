@@ -1,0 +1,10 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: traefik
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.1.208/28
+  autoAssign: false
+  avoidBuggyIPs: false

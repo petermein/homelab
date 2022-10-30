@@ -2,6 +2,28 @@ metal:
   children:
     masters:
       hosts:
-        europa: {ansible_host: 192.168.1.8, mac: '1c:69:7a:ac:21:f2', disk: nvme0n1, network_interface: enp89s0}
+        europa:
+          {
+            ansible_host: 192.168.1.8,
+            mac: "1c:69:7a:ac:21:f2",
+            disk: nvme0n1,
+            network_interface: enp89s0,
+          }
     workers:
       hosts:
+        leda-1: { ansible_host: 192.168.1.191, mac: "b8:27:eb:f0:aa:b3" }
+        ersa-2: { ansible_host: 192.168.1.192, mac: "b8:27:eb:f7:3c:52" }
+        himalia-3: { ansible_host: 192.168.1.193, mac: "b8:27:eb:d9:0e:4c" }
+        pandi-4: { ansible_host: 192.168.1.194, mac: "b8:27:eb:de:b3:0d" }
+        lysithe-5: { ansible_host: 192.168.1.195, mac: "b8:27:eb:60:39:5c" }
+        elara-6: { ansible_host: 192.168.1.196, mac: "b8:27:eb:94:af:0a" }
+        dia-7: { ansible_host: 192.168.1.197, mac: "b8:27:eb:3d:8d:16" }
+    picm3:
+      hosts:
+        leda-1: { ansible_host: 192.168.1.191, mac: "b8:27:eb:f0:aa:b3" }
+        ersa-2: { ansible_host: 192.168.1.192, mac: "b8:27:eb:f7:3c:52" }
+        himalia-3: { ansible_host: 192.168.1.193, mac: "b8:27:eb:d9:0e:4c" }
+        pandi-4: { ansible_host: 192.168.1.194, mac: "b8:27:eb:de:b3:0d" }
+        lysithe-5: { ansible_host: 192.168.1.195, mac: "b8:27:eb:60:39:5c" }
+        elara-6: { ansible_host: 192.168.1.196, mac: "b8:27:eb:94:af:0a" }
+        dia-7: { ansible_host: 192.168.1.197, mac: "b8:27:eb:3d:8d:16" }
