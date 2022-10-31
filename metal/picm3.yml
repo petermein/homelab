@@ -82,6 +82,12 @@
     timezone: Europe/Amsterdam
 
   tasks:
+    - name: Install open-iscsi for longhorn
+      ansible.builtin.apt:
+        name: "open-iscsi"
+        state: latest
+        update_cache: true
+
     - name: Enable container features
       replace:
         path: /boot/cmdline.txt
