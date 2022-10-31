@@ -1,7 +1,7 @@
 ingress-nginx:
   controller:
     config:
-      whitelist-source-range: 213.34.1.38/32, 37.97.253.87/32, 192.168.1.0/24, 10.42.0.0/24
+      whitelist-source-range: 213.34.1.38/32, 37.97.253.87/32, 192.168.1.0/24, 10.42.0.0/18
     admissionWebhooks:
       timeoutSeconds: 30
     metrics:
