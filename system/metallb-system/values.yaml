@@ -1,2 +1,7 @@
 metallb:
   existingConfigMap: metallb-config
+
+  speaker:
+    image:
+      repository: metallb/speaker
+      tag: main

@@ -5,6 +5,6 @@
     name: "{{ metallb_namespace }}"
     state: present
 
-- name: Create MetalLB crds for network info
+- name: Create MetalLB config base on network info
   kubernetes.core.k8s:
-    definition: "{{ lookup('template', 'crds.yaml.j2') | from_yaml }}"
+    definition: "{{ lookup('template', 'configmap.yaml.j2') | from_yaml }}"
