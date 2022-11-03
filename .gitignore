@@ -2,6 +2,7 @@
 .ssh/
 book/
 .idea
+upstream/
 
 *.iso
 *.log

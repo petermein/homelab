@@ -2,19 +2,18 @@ terraform {
   required_version = "~> 1.3.0"
 
   backend "local" {
+    # hostname     = "app.terraform.io"
+    # organization = "Infratron"
 
+    # workspaces {
+    #   name = "jupiter"
+    # }
   }
 
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "~> 3.26.0"
-    }
-
-    b2 = {
-      source  = "Backblaze/b2"
-      version = "~> 0.7.0"
-      version = "~> 3.11.0"
     }
 
     kubernetes = {
@@ -25,6 +24,11 @@ terraform {
     http = {
       source  = "hashicorp/http"
       version = "~> 2.2.0"
+    }
+
+    backblaze = {
+      source  = "backblaze/b2"
+      version = "~> 0.8.1"
     }
   }
 }

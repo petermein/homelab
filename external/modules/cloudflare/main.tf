@@ -35,7 +35,7 @@ resource "cloudflare_record" "tunnel" {
   zone_id = data.cloudflare_zone.zone.id
   type    = "CNAME"
   name    = "jupiter-tunnel"
-  value   = "${cloudflare_argo_tunnel.homelab.id}.cfargotunnel.com"
+  value   = "${cloudflare_argo_tunnel.jupiter.id}.cfargotunnel.com"
   proxied = false
   ttl     = 1 # Auto
 }
@@ -49,8 +49,8 @@ resource "kubernetes_secret" "cloudflared_credentials" {
   data = {
     "credentials.json" = jsonencode({
       AccountTag   = var.cloudflare_account_id
-      TunnelName   = cloudflare_argo_tunnel.homelab.name
-      TunnelID     = cloudflare_argo_tunnel.homelab.id
+      TunnelName   = cloudflare_argo_tunnel.jupiter.name
+      TunnelID     = cloudflare_argo_tunnel.jupiter.id
       TunnelSecret = base64encode(random_password.tunnel_secret.result)
     })
   }
