@@ -1,5 +1,5 @@
 data "cloudflare_zone" "zone" {
-  zone_id = "f2dbeb2dca3e055df71df866b8188ce7"
+  name = "mein.nl"
 }
 
 data "cloudflare_api_token_permission_groups" "all" {}
@@ -35,7 +35,7 @@ resource "cloudflare_record" "tunnel" {
   zone_id = data.cloudflare_zone.zone.id
   type    = "CNAME"
   name    = "jupiter-tunnel"
-  value   = "${cloudflare_argo_tunnel.homelab.id}.cfargotunnel.com"
+  value   = "${cloudflare_argo_tunnel.jupiter.id}.cfargotunnel.com"
   proxied = false
   ttl     = 1 # Auto
 }
@@ -49,15 +49,15 @@ resource "kubernetes_secret" "cloudflared_credentials" {
   data = {
     "credentials.json" = jsonencode({
       AccountTag   = var.cloudflare_account_id
-      TunnelName   = cloudflare_argo_tunnel.homelab.name
-      TunnelID     = cloudflare_argo_tunnel.homelab.id
+      TunnelName   = cloudflare_argo_tunnel.jupiter.name
+      TunnelID     = cloudflare_argo_tunnel.jupiter.id
       TunnelSecret = base64encode(random_password.tunnel_secret.result)
     })
   }
 }
 
 resource "cloudflare_api_token" "external_dns" {
-  name = "homelab_external_dns"
+  name = "jupiter_external_dns"
 
   policy {
     permission_groups = [
@@ -88,7 +88,7 @@ resource "kubernetes_secret" "external_dns_token" {
 }
 
 resource "cloudflare_api_token" "cert_manager" {
-  name = "homelab_cert_manager"
+  name = "jupiter_cert_manager"
 
   policy {
     permission_groups = [
