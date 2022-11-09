@@ -18,3 +18,21 @@
     - key: password
       length: 32
       special: true
+
+- path: pihole/admin
+  data:
+    - key: password
+      length: 32
+      special: true
+
+- path: mariadb/admin
+  data:
+    - key: password
+      length: 32
+      special: true
+
+- path: postgres/admin
+  data:
+    - key: password
+      length: 32
+      special: true

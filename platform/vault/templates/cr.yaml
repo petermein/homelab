@@ -40,8 +40,8 @@ spec:
 
   # Support for pod nodeSelector rules to control which nodes can be chosen to run
   # the given pods
-  # nodeSelector:
-  #   "node-role.kubernetes.io/your_role": "true"
+  nodeSelector:
+     "kubernetes.io/hostname": "europa"
 
   # Support for node tolerations that work together with node taints to control
   # the pods that can like on a node
@@ -260,7 +260,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: vault-file
 spec:
-  storageClassName: longhorn
+  storageClassName: nfs
   accessModes:
     - ReadWriteOnce
   resources:
