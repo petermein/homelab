@@ -25,4 +25,4 @@ git checkout -b contrib-fix-something
 # commit, push, etc. as usual
 ```
 
-Then you can send the patch using [GitHub pull request](https://github.com/khuedoan/homelab/pulls) or `git send-email` to <mail@khuedoan.com>.
+Then you can send the patch using [GitHub pull request](https://github.com/khuedoan/homelab/pulls) or `git send-email` to <mail@io.jupiter.mein.nl>.

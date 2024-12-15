@@ -1,6 +1,6 @@
 argo-cd:
   global:
-    domain: argocd.khuedoan.com
+    domain: argocd.io.jupiter.mein.nl
   configs:
     params:
       server.insecure: true

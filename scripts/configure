@@ -15,7 +15,7 @@ from rich.prompt import Confirm, Prompt
 
 upstream_config = {
     "seed_repo": "https://github.com/khuedoan/homelab",
-    "domain": "khuedoan.com",
+    "domain": "io.jupiter.mein.nl",
     "timezone": "Asia/Ho_Chi_Minh",
     "terraform_workspace": "khuedoan",
     "loadbalancer_ip_range": "192.168.1.224/27",
