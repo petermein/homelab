@@ -1,4 +1,4 @@
-module git.io.jupiter.mein.nl/khuedoan/homelab/gitea/config
+module git.io.jupiter.mein.nl/petermein/homelab/gitea/config
 
 go 1.19
 

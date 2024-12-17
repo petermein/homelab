@@ -2,10 +2,10 @@
 
 ## Fork this repository
 
-Because [this project](https://github.com/khuedoan/homelab) applies GitOps practices,
+Because [this project](https://github.com/petermein/homelab) applies GitOps practices,
 it's the source of truth for _my_ homelab, so you'll need to fork it to make it yours:
 
-[:fontawesome-solid-code-fork: Fork khuedoan/homelab](https://github.com/khuedoan/homelab/fork){ .md-button }
+[:fontawesome-solid-code-fork: Fork petermein/homelab](https://github.com/petermein/homelab/fork){ .md-button }
 
 By using this project you agree to [the license](../../reference/license.md).
 

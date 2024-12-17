@@ -2,10 +2,10 @@
 
 **[Features](#features) • [Get Started](#get-started) • [Documentation](https://homelab.io.jupiter.mein.nl)**
 
-[![tag](https://img.shields.io/github/v/tag/khuedoan/homelab?style=flat-square&logo=semver&logoColor=white)](https://github.com/khuedoan/homelab/tags)
+[![tag](https://img.shields.io/github/v/tag/petermein/homelab?style=flat-square&logo=semver&logoColor=white)](https://github.com/petermein/homelab/tags)
 [![document](https://img.shields.io/website?label=document&logo=gitbook&logoColor=white&style=flat-square&url=https%3A%2F%2Fhomelab.io.jupiter.mein.nl)](https://homelab.io.jupiter.mein.nl)
-[![license](https://img.shields.io/github/license/khuedoan/homelab?style=flat-square&logo=gnu&logoColor=white)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![stars](https://img.shields.io/github/stars/khuedoan/homelab?logo=github&logoColor=white&color=gold&style=flat-square)](https://github.com/khuedoan/homelab)
+[![license](https://img.shields.io/github/license/petermein/homelab?style=flat-square&logo=gnu&logoColor=white)](https://www.gnu.org/licenses/gpl-3.0.html)
+[![stars](https://img.shields.io/github/stars/petermein/homelab?logo=github&logoColor=white&color=gold&style=flat-square)](https://github.com/petermein/homelab)
 
 This project utilizes [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) and [GitOps](https://www.weave.works/technologies/gitops) to automate provisioning, operating, and updating self-hosted services in my homelab.
 It can be used as a highly customizable framework to build your own homelab.
@@ -89,15 +89,15 @@ They can't capture all the project's features, but they are sufficient to get a 
 
 [deploy-demo]: https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7.svg
 [pxe-demo]: https://user-images.githubusercontent.com/27996771/157303477-df2e7410-8f02-4648-a86c-71e6b7e89e35.png
-[hubble-demo]: https://github.com/khuedoan/homelab/assets/27996771/9c6677d0-3564-47c0-852b-24b6a554b4a3
-[homepage-demo]: https://github.com/khuedoan/homelab/assets/27996771/d0eaf620-be08-48d8-8420-40bcaa86093b
-[grafana-demo]: https://github.com/khuedoan/homelab/assets/27996771/ad937b26-e9bc-4761-83ae-1c7f512ea97f
-[gitea-demo]: https://github.com/khuedoan/homelab/assets/27996771/c245534f-88d9-4565-bde8-b39f60ccee9e
+[hubble-demo]: https://github.com/petermein/homelab/assets/27996771/9c6677d0-3564-47c0-852b-24b6a554b4a3
+[homepage-demo]: https://github.com/petermein/homelab/assets/27996771/d0eaf620-be08-48d8-8420-40bcaa86093b
+[grafana-demo]: https://github.com/petermein/homelab/assets/27996771/ad937b26-e9bc-4761-83ae-1c7f512ea97f
+[gitea-demo]: https://github.com/petermein/homelab/assets/27996771/c245534f-88d9-4565-bde8-b39f60ccee9e
 [matrix-demo]: https://user-images.githubusercontent.com/27996771/149448510-7163310c-2049-4ccd-901d-f11f605bfc32.png
-[woodpecker-demo]: https://github.com/khuedoan/homelab/assets/27996771/5d887688-d20a-44c8-8f77-0c625527dfe4
-[argocd-demo]: https://github.com/khuedoan/homelab/assets/27996771/527e2529-4fe1-4664-ab8a-b9eb3c492d20
-[alert-demo]: https://github.com/khuedoan/homelab/assets/27996771/c922f755-e911-4ca0-9d4a-6e552d387f18
-[ai-demo]: https://github.com/khuedoan/homelab/assets/27996771/d77ba511-00b7-47c3-9032-55679a099e70
+[woodpecker-demo]: https://github.com/petermein/homelab/assets/27996771/5d887688-d20a-44c8-8f77-0c625527dfe4
+[argocd-demo]: https://github.com/petermein/homelab/assets/27996771/527e2529-4fe1-4664-ab8a-b9eb3c492d20
+[alert-demo]: https://github.com/petermein/homelab/assets/27996771/c922f755-e911-4ca0-9d4a-6e552d387f18
+[ai-demo]: https://github.com/petermein/homelab/assets/27996771/d77ba511-00b7-47c3-9032-55679a099e70
 
 ### Tech stack
 
@@ -241,7 +241,7 @@ They can't capture all the project's features, but they are sufficient to get a 
 
 ## Roadmap
 
-See [roadmap](https://homelab.io.jupiter.mein.nl/reference/roadmap) and [open issues](https://github.com/khuedoan/homelab/issues) for a list of proposed features and known issues.
+See [roadmap](https://homelab.io.jupiter.mein.nl/reference/roadmap) and [open issues](https://github.com/petermein/homelab/issues) for a list of proposed features and known issues.
 
 ## Contributing
 
@@ -299,4 +299,4 @@ If you feel you're missing from this list, please feel free to add yourself in a
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/khuedoan/homelab.svg)](https://starchart.cc/khuedoan/homelab)
+[![Stargazers over time](https://starchart.cc/petermein/homelab.svg)](https://starchart.cc/petermein/homelab)

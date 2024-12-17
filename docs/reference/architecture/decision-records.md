@@ -136,7 +136,7 @@ Move to Nix shell with a Docker wrapper, in case Nix is not available (see commi
 
 **Context**
 
-[Original proposal from @Bourne-ID](https://github.com/khuedoan/homelab/issues/70):
+[Original proposal from @Bourne-ID](https://github.com/petermein/homelab/issues/70):
 
 > **Issue statement**
 >
@@ -200,7 +200,7 @@ Alternatives considered:
     - Pros: automatic and atomic upgrade, immutable, quick installation
     - Cons: hard to run Ansible on (Python is not included)
 - CentOS/Rocky Linux (moved to Fedora in `022b816`):
-    - Pros: relatively stable (however we did encounter a breaking change [#63](https://github.com/khuedoan/homelab/issues/63), still not sure why)
+    - Pros: relatively stable (however we did encounter a breaking change [#63](https://github.com/petermein/homelab/issues/63), still not sure why)
     - Cons: kernel and packages are too old
 - Debian: couldn't get it to work with PXE boot and Rocky Linux was sufficient so I didn't push any further
 - Cluster API (previous attempt in ` a8e4a85`, I hope to get this to work someday):

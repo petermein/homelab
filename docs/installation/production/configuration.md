@@ -18,7 +18,7 @@ make configure
 
     ```
     Text editor (nvim):
-    Enter seed repo (github.com/khuedoan/homelab): github.com/example/homelab
+    Enter seed repo (github.com/petermein/homelab): github.com/example/homelab
     Enter your domain (io.jupiter.mein.nl): example.com
     ```
 
