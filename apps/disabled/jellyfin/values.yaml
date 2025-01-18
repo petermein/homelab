@@ -12,7 +12,7 @@ app-template:
         transmission:
           image:
             repository: lscr.io/linuxserver/transmission
-            tag: 4.0.5
+            tag: 2021.11.18
         prowlarr:
           image:
             repository: lscr.io/linuxserver/prowlarr
