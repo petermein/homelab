@@ -21,10 +21,10 @@ repositories:
   - name: blog
     owner: mein
     migrate:
-      source: https://github.com/mein/blog
+      source: https://github.com/petermein/blog
       mirror: true
   - name: backstage
     owner: mein
     migrate:
-      source: https://github.com/mein/backstage
+      source: https://github.com/petermein/backstage
       mirror: true
