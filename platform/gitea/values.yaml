@@ -16,22 +16,7 @@ gitea:
   gitea:
     admin:
       existingSecret: gitea-admin-secret
-    additionalConfigSources:
-      - secret:
-          secretName: gitea-postgresql-secret
-    additionalConfigFromEnvs:
-      - name: GITEA__DATABASE__PASSWD
-        valueFrom:
-          secretKeyRef:
-            name: gitea-postgresql-secret
-            key: password
     config:
-      database:
-        DB_TYPE: mysql
-        HOST: postgresql16
-        NAME: gitea
-        USER: gitea
-        SCHEMA: gitea
       server:
         LANDING_PAGE: explore
         ROOT_URL: https://git.io.jupiter.mein.nl
@@ -52,5 +37,3 @@ gitea:
         ENABLED: false
       webhook:
         ALLOWED_HOST_LIST: private
-      postgresql.enabled: false
-      postgresql-ha.enabled: false
