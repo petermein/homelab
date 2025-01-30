@@ -17,6 +17,13 @@ gitea:
     admin:
       existingSecret: gitea-admin-secret
     config:
+      database:
+        DB_TYPE: postgres
+        HOST: 192.168.50.200
+        NAME: gitea
+        USER: gitea
+        PASSWD: gitea
+        SCHEMA: gitea
       server:
         LANDING_PAGE: explore
         ROOT_URL: https://git.io.jupiter.mein.nl
@@ -37,3 +44,9 @@ gitea:
         ENABLED: false
       webhook:
         ALLOWED_HOST_LIST: private
+        
+  postgresql:
+    enabled: false
+
+  postgresql-ha:
+    enabled: false
