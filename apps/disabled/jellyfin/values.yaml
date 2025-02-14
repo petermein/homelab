@@ -8,27 +8,27 @@ app-template:
         main:
           image:
             repository: docker.io/jellyfin/jellyfin
-            tag: 10.8.13
+            tag: 10.10.5
         transmission:
           image:
             repository: lscr.io/linuxserver/transmission
-            tag: 4.0.5
+            tag: 4.0.6
         prowlarr:
           image:
             repository: lscr.io/linuxserver/prowlarr
-            tag: 1.13.3
+            tag: 1.30.2
         radarr:
           image:
             repository: lscr.io/linuxserver/radarr
-            tag: 5.3.6
+            tag: 5.18.4
         sonarr:
           image:
             repository: lscr.io/linuxserver/sonarr
-            tag: 4.0.2
+            tag: 4.0.13
         jellyseerr:
           image:
             repository: docker.io/fallenbagel/jellyseerr
-            tag: 1.7.0
+            tag: 1.9.2
   service:
     main:
       ports:
