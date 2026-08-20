@@ -15,7 +15,7 @@ app-template:
         redis:
           image:
             repository: docker.io/library/redis
-            tag: 7.2.4
+            tag: 8.10.1
   service:
     main:
       ports:
